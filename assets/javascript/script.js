@@ -31,10 +31,24 @@ $(document).ready(function () {
 
 
 
+    $('#todoBtn').click(function () {
+        var newTask = $("#todoInputText").val();
+        if (newTask !== '') {
+            
+            $("#todoListSection").append('<ul class="list-group deletetask">'+ newTask + "</ul>");
+            $("#todoInputText").val("");
+            deleteTasks();
+        } 
+
+        function deleteTasks() {
+            $('.deletetask').click(function () {
+                $(this).remove();
+            });
+        };
+    });
 
 
-
-
+    
 
 
 
