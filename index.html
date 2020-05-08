@@ -5,6 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foundation for Sites</title>
+    <script src="https://kit.fontawesome.com/ca89a4b9f5.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/css/foundation.css">
     <link rel="stylesheet" href="assets/css/app.css">
   </head>
@@ -29,18 +30,17 @@
 
     <div>  
       <h3> Things to do</h3>
+
           <div class="switch radius">
-            <input type="radio">
-            <input class="inputarea"> </input>
+            <input class="inputarea" id="todoInputText"> </input>
+            <button type="button" class="button small" id="todoBtn">Save</button>
           </div> 
-          <div class="switch radius">
-            <input type="radio">
-            <input class="inputarea"> </input>
-          </div> 
-          <div class="switch radius">
-            <input type="radio">
-            <input class="inputarea"> </input>
-          </div> 
+          <div id="todoListSection">
+            <i class="fas fa-trash-alt" id="delete"></i>
+            <i class="fas fa-check" id="done"></i>
+            
+          </div>
+          
   </div>
 
     <script src="assets/foundation/jquery.js"></script>
