@@ -1,0 +1,40 @@
+body{
+background-color: #F8F8F8;
+auto;
+}
+
+.top-bar{
+display: flex;
+justify-content: center;
+align-items: center;
+font-weight: bold;
+font-size: 50px;
+}
+
+.date{
+position: relative;
+
+}
+
+.weather{
+position: absolute;
+right: 0;
+top: 90px;
+margin-right: 20px;
+}
+
+.quote{
+text-align: center;
+margin: 0 30px;
+}
+
+h1{
+font-weight:bold;
+}
+
+.toDo{
+margin: 20px;
+text-align: center;
+
+
+}
