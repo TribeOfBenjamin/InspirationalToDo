@@ -29,18 +29,26 @@ $(document).ready(function () {
 
     setInterval(updateClock, 1000);
 
+    // I used this SO question as a reference: https://stackoverflow.com/questions/8398897/how-to-get-current-date-in-jquery
+    let d = new Date();
+
+    let monthToday = d.getMonth() + 1;
+    let dateToday = d.getDate();
+
     function USHolidaysDisplay() {
 
         let APIKey = "29671703895b844822f5b4b4b459925e35ceadde"
         
         var queryURL = "https://calendarific.com/api/v2/holidays?&api_key=" + APIKey + "&country=US&year=2020";
 
+
+
         $.ajax({
         url: queryURL,
         method: "GET"
         })
         .then(function(result) {
-            
+
             // Hard coded with [1] for now. Will want to find a way to check the date and serve up that holiday
             let holidayName = result.response.holidays[1].name;
 
@@ -49,6 +57,8 @@ $(document).ready(function () {
             $("#holidayToday").append(holidayToday);
 
             console.log(holidayName);
+            console.log(monthToday);
+            console.log(dateToday);
         });
 
 
