@@ -57,6 +57,7 @@ $(document).ready(function () {
             $("#holidayToday").append(holidayToday);
 
             console.log(holidayName);
+            console.log(result.response)
             console.log(monthToday);
             console.log(dateToday);
         });
