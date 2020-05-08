@@ -1,7 +1,11 @@
 
+
+$("#searchBtn").on("click", function (event) {
+    event.preventDefault();
+
 // We will be using a zipcode call to get their location 
 // Through this call we can get the location name appended to page 
-var zipcode = prompt("What is your zipcode?")
+var zipcode = $("#searchInput").val();
 console.log(zipcode);
 queryURL = "http://api.openweathermap.org/data/2.5/weather?zip=" +
     zipcode + ",us&appid=84195ee828661450717285da2a13ecae"
@@ -14,23 +18,20 @@ $.ajax({
 })
 
     .then(function (response) {
-        console.log(response,"response and hi");
         // This is logging the name of the city 
         console.log(response.name);
         var city = response.name;
-        $("").html(city);
+        $("#city").html(city);
         //This is the temperature 
-        console.log(response.main.temp);
-        var tempC = (response.main.temp)
-        $("").html(tempC);
-
+        var tempC = (response.main.temp)       
         var convTemp = tempConvert(tempC);
         console.log(convTemp);
+        $("#weather").html(convTemp + "°F");
 
     });
 
 
-
+});
 
 // This function converts temperature to farenheight
 function tempConvert(valNum) {
