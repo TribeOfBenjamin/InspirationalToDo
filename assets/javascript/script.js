@@ -24,7 +24,7 @@ $(document).ready(function () {
                 console.log(response);
 
                 // Creates paragraph with quote and appends to div
-                let kanyeQuote = $("<p>").text(response.quote);
+                let kanyeQuote = $("<p>").text('"' + response.quote + '"');
 
                 $("#kanyeQuote").append(kanyeQuote);
 
