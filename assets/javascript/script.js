@@ -62,21 +62,17 @@ $(document).ready(function () {
 
             for (let i = 0; i < result.response.holidays.length; i++) {
 
-                if (result.response.holidays[i].name === "New Year's Day") {
-                    console.log("TEST WORKED FOR HOLIDAYS!");
+                if ((result.response.holidays[i].date.datetime.day === dateToday) && (result.response.holidays[i].date.datetime.month === monthToday)) {
+                    
+                    let holidayName = result.response.holidays[i].name;
+
+                    let holidayToday = $("<p>").text(holidayName);
+
+                    $("#holidayToday").append(holidayToday);
+                    
+                    console.log(holidayName);
                 }
-
-
             }
-
-
-
-            // Hard coded with [1] for now. Will want to find a way to check the date and serve up that holiday
-            let holidayName = result.response.holidays[1].name;
-
-            let holidayToday = $("<p>").text(holidayName);
-
-            $("#holidayToday").append(holidayToday);
 
             console.log("Holiday Object");
             console.log(result);
