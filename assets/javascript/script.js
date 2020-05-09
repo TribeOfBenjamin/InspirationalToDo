@@ -129,6 +129,7 @@ $(document).ready(function () {
 
             .then(function (response) {
                 // This is logging the name of the city 
+                console.log(response);
                 var city = response.name;
                 $("#city").html(city);
                 //This is the temperature 
