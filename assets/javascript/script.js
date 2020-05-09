@@ -1,13 +1,41 @@
 $(document).ready(function () {
-    
+    //geolocation
+    var options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+    };
+
+    function success(pos) {
+        var crd = pos.coords;
+        console.log(pos);
+        var lat = crd.latitude;
+        var lon = crd.longitude;
+
+        console.log('Your current position is:');
+        console.log(`Latitude : ${crd.latitude}`);
+        console.log(`Longitude: ${crd.longitude}`);
+        console.log(`More or less ${crd.accuracy} meters.`);
+        weatherDisplay(lat, lon);
+
+
+
+
+    }
+
+    function error(err) {
+        console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+
+    navigator.geolocation.getCurrentPosition(success, error, options);
+
+
     // The date is being appended w/ this
     var d = new Date();
     var newDate = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
     $("#new-date").html(newDate);
 
-    // Start this elements hidden
-    var hidden = $("#hidden");
-    hidden.hide();
+
 
     // Kanye Quote API
     function kanyeQuoteDisplay() {
@@ -20,10 +48,11 @@ $(document).ready(function () {
         })
 
             .then(function (response) {
+                console.log("Kanye Object");
                 console.log(response);
 
                 // Creates paragraph with quote and appends to div
-                let kanyeQuote = $("<p>").text(response.quote);
+                let kanyeQuote = $("<p>").text('"' + response.quote + '"');
 
                 $("#kanyeQuote").append(kanyeQuote);
 
@@ -40,6 +69,7 @@ $(document).ready(function () {
 
     setInterval(updateClock, 1000);
 
+    // Holiday Calendar API
     // I used this SO question as a reference: https://stackoverflow.com/questions/8398897/how-to-get-current-date-in-jquery
     // let d = new Date();
 
@@ -49,27 +79,33 @@ $(document).ready(function () {
     function USHolidaysDisplay() {
 
         let APIKey = "29671703895b844822f5b4b4b459925e35ceadde"
-        
+
         var queryURL = "https://calendarific.com/api/v2/holidays?&api_key=" + APIKey + "&country=US&year=2020";
 
         $.ajax({
-        url: queryURL,
-        method: "GET"
+            url: queryURL,
+            method: "GET"
         })
-        .then(function(result) {
+            .then(function (result) {
 
-            // Hard coded with [1] for now. Will want to find a way to check the date and serve up that holiday
-            let holidayName = result.response.holidays[1].name;
+                for (let i = 0; i < result.response.holidays.length; i++) {
 
-            let holidayToday = $("<p>").text(holidayName);
+                    if ((result.response.holidays[i].date.datetime.day === dateToday) && (result.response.holidays[i].date.datetime.month === monthToday)) {
 
-            $("#holidayToday").append(holidayToday);
+                        let holidayName = result.response.holidays[i].name;
 
-            console.log(holidayName);
-            console.log(result.response)
-            console.log(monthToday);
-            console.log(dateToday);
-        });
+                        let holidayToday = $("<p>").text(holidayName);
+
+                        $("#holidayToday").append(holidayToday);
+
+                        console.log(holidayName);
+                    }
+                }
+
+                console.log("Holiday Object");
+                console.log(result);
+
+            });
 
     }
 
@@ -78,17 +114,11 @@ $(document).ready(function () {
 
 
     // Function for the weather and current city
-    $("#searchBtn").on("click", function (event) {
-        hidden.show();
-        event.preventDefault();
-       
+    $("#searchBtn").on("click", weatherDisplay);
+    function weatherDisplay(lat, lon) {
 
-        // We will be using a zipcode call to get their location 
-        // Through this call we can get the location name appended to page 
-        var zipcode = $("#searchInput").val();
-        console.log(zipcode);
-        queryURL = "http://api.openweathermap.org/data/2.5/weather?zip=" +
-            zipcode + ",us&appid=84195ee828661450717285da2a13ecae"
+        queryURL = "http://api.openweathermap.org/data/2.5/weather?lat=" +
+            lat + "&lon=" + lon+ "&appid=84195ee828661450717285da2a13ecae"
 
 
         $.ajax({
@@ -99,7 +129,6 @@ $(document).ready(function () {
 
             .then(function (response) {
                 // This is logging the name of the city 
-                console.log(response.name);
                 var city = response.name;
                 $("#city").html(city);
                 //This is the temperature 
@@ -111,7 +140,7 @@ $(document).ready(function () {
             });
 
 
-    });
+    };
 
     // This function converts temperature to farenheight
     function tempConvert(valNum) {
@@ -127,7 +156,7 @@ $(document).ready(function () {
 
 
     $(".fa-caret-down").on("click", function () {
-      $("input").slideToggle();
+        $("input").slideToggle();
     });
     var todoArr = [];
     var todoListObj = {
@@ -167,12 +196,12 @@ $(document).ready(function () {
     });
 
     $("ul").on("click", "li", function () {
-      $(this).toggleClass("done");
+        $(this).toggleClass("done");
     });
 
     $("ul").on("click", "span", function (e) {
-      e.stopPropagation();
-      $(this).parent().fadeOut();
+        e.stopPropagation();
+        $(this).parent().fadeOut();
     });
 
     function renderTodo() {
