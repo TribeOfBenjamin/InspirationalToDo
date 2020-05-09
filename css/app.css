@@ -1,5 +1,5 @@
 body{
-background-color: #F8F8F8;
+background-color: grey;
 auto;
 }
 
@@ -23,7 +23,7 @@ top: 90px;
 margin-right: 20px;
 }
 
-.quote{
+.kanyeQuote{
 text-align: center;
 margin: 0 30px;
 }
