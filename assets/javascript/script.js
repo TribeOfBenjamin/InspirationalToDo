@@ -52,7 +52,7 @@ $(document).ready(function () {
                 console.log(response);
 
                 // Creates paragraph with quote and appends to div
-                let kanyeQuote = $("<p>").text(response.quote);
+                let kanyeQuote = $("<p>").text('"' + response.quote + '"');
 
                 $("#kanyeQuote").append(kanyeQuote);
 
@@ -135,7 +135,12 @@ $(document).ready(function () {
                 //This is the temperature 
                 var tempC = (response.main.temp)
                 var convTemp = tempConvert(tempC);
+<<<<<<< HEAD
+                console.log(convTemp);
+                $("#weather").html(convTemp + "°F");
+=======
                 $(".weather").html(convTemp + "°F");
+>>>>>>> 48a689d09066426fe2760d18eb44ed280a6719d3
 
             });
 
