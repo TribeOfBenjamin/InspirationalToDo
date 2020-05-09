@@ -78,10 +78,12 @@ $(document).ready(function () {
 
 
     // Function for the weather and current city
-    $("#searchBtn").on("click", function (event) {
+    $("#searchBtn").on("click", weatherDisplay);
+    function weatherDisplay (event) {        
         hidden.show();
-        event.preventDefault();
-       
+        if (event){
+            event.preventDefault();
+        }
 
         // We will be using a zipcode call to get their location 
         // Through this call we can get the location name appended to page 
@@ -106,12 +108,12 @@ $(document).ready(function () {
                 var tempC = (response.main.temp)
                 var convTemp = tempConvert(tempC);
                 console.log(convTemp);
-                $("#weather").html(convTemp + "°F");
+                $(".weather").html(convTemp + "°F");
 
             });
 
 
-    });
+    };
 
     // This function converts temperature to farenheight
     function tempConvert(valNum) {
@@ -150,5 +152,18 @@ $(document).ready(function () {
       e.stopPropagation();
       $(this).parent().fadeOut();
     });
+
+    // Localstorage for the weather 
+    if(localStorage.getItem("inputval")){
+        localStorage.getItem("inputval");
+         $('#searchInput').val(localStorage.getItem("inputval"));
+         weatherDisplay();
+       }
+       
+       $('#searchBtn').on('click', function() {
+       localStorage.setItem("inputval", $('#searchInput').val());
+       $('#searchInput').text(localStorage.getItem("inputval"));
+   });
+
 
 });
