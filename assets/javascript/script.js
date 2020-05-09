@@ -128,14 +128,22 @@ $(document).ready(function () {
         })
 
             .then(function (response) {
+                var imgSource = "http://openweathermap.org/img/wn/"+ response.weather[0].icon + "@2x.png"
                 // This is logging the name of the city 
+                console.log(response);
+                console.log(response.weather[0].icon);
                 var city = response.name;
                 $("#city").html(city);
                 //This is the temperature 
                 var tempC = (response.main.temp)
                 var convTemp = tempConvert(tempC);
+<<<<<<< HEAD
                 console.log(convTemp);
                 $("#weather").html(convTemp + "°F");
+=======
+                $("#weather").html(convTemp + "°F");
+                $("#imgIcon").attr('src', imgSource);
+>>>>>>> d630ddef2415a09fcf0d55dcb8a555695836f252
 
             });
 
