@@ -41,7 +41,7 @@ $(document).ready(function () {
     setInterval(updateClock, 1000);
 
     // I used this SO question as a reference: https://stackoverflow.com/questions/8398897/how-to-get-current-date-in-jquery
-    let d = new Date();
+    // let d = new Date();
 
     let monthToday = d.getMonth() + 1;
     let dateToday = d.getDate();
@@ -51,8 +51,6 @@ $(document).ready(function () {
         let APIKey = "29671703895b844822f5b4b4b459925e35ceadde"
         
         var queryURL = "https://calendarific.com/api/v2/holidays?&api_key=" + APIKey + "&country=US&year=2020";
-
-
 
         $.ajax({
         url: queryURL,
@@ -72,8 +70,6 @@ $(document).ready(function () {
             console.log(monthToday);
             console.log(dateToday);
         });
-
-
 
     }
 
@@ -130,35 +126,29 @@ $(document).ready(function () {
     }
 
 
-
-
-
-
-    $('#todoBtn').click(function () {
-        var newTask = $("#todoInputText").val();
-        if (newTask !== '') {
-            
-            $("#todoListSection").append('<ul class="list-group deletetask">'+ newTask + "</ul>");
-            $("#todoInputText").val("");
-            deleteTasks();
-        } 
-
-        function deleteTasks() {
-            $('.deletetask').click(function () {
-                $(this).remove();
-            });
-        };
+    $(".fa-caret-down").on("click", function () {
+      $("input").slideToggle();
     });
 
+    $("#input").keypress(function (event) {
+      if (event.keyCode === 13) {
+        event.preventDefault();
+        var todo = $("#input").val();
+        console.log(todo);
+        var listEl = $('<li><span><i class="fa fa-trash-alt" aria-hidden="true"></i></span> ' + todo + "</li>");
+        $("#list").append(listEl);
 
-    
+        $("#input").val("");
+      }
+    });
 
+    $("ul").on("click", "li", function () {
+      $(this).toggleClass("done");
+    });
 
-
-
-
-
-
-
+    $("ul").on("click", "span", function (e) {
+      e.stopPropagation();
+      $(this).parent().fadeOut();
+    });
 
 });
