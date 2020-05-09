@@ -134,12 +134,8 @@ $(document).ready(function () {
                 //This is the temperature 
                 var tempC = (response.main.temp)
                 var convTemp = tempConvert(tempC);
-<<<<<<< HEAD
                 console.log(convTemp);
                 $("#weather").html(convTemp + "°F");
-=======
-                $(".weather").html(convTemp + "°F");
->>>>>>> 48a689d09066426fe2760d18eb44ed280a6719d3
 
             });
 
