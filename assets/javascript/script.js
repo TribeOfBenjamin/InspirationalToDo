@@ -32,7 +32,7 @@ $(document).ready(function () {
 
     // The date is being appended w/ this
     var d = new Date();
-    var newDate = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
+    var newDate = (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
     $("#new-date").html(newDate);
 
 
@@ -94,7 +94,7 @@ $(document).ready(function () {
 
                         let holidayName = result.response.holidays[i].name;
 
-                        let holidayToday = $("<p>").text(holidayName);
+                        let holidayToday = $("<p>").text("Today is " + holidayName);
 
                         $("#holidayToday").append(holidayToday);
 
