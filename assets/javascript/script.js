@@ -129,17 +129,41 @@ $(document).ready(function () {
     $(".fa-caret-down").on("click", function () {
       $("input").slideToggle();
     });
+    var todoArr = [];
+    var todoListObj = {
+      todoTask: "",
+      done: "",
+    };
 
     $("#input").keypress(function (event) {
       if (event.keyCode === 13) {
-        event.preventDefault();
-        var todo = $("#input").val();
-        console.log(todo);
-        var listEl = $('<li><span><i class="fa fa-trash-alt" aria-hidden="true"></i></span> ' + todo + "</li>");
-        $("#list").append(listEl);
-
-        $("#input").val("");
-      }
+          event.preventDefault();
+          
+          var todoList = JSON.parse(localStorage.getItem("todoList"));
+          var todo = $("#input").val();
+          if (todo !== "") {
+              if (todoList === null) {
+                  todoListObj.todoTask = todo;
+                  todoListObj.done = false;
+                  todoArr.push(todoListObj);
+                  localStorage.setItem("todoList", JSON.stringify(todoArr));
+              } else {
+                  let todoIndex = todoList.findIndex((List) => List.done === true);
+                  if (todoIndex !== -1) {
+                      todoList[todoIndex].todoTask = todo; 
+                  } else {
+                      todoListObj.todoTask = todo;
+                      todoListObj.done = false;
+                      todoList.push(todoListObj);
+                  }
+                  localStorage.setItem("todoList", JSON.stringify(todoList));
+              }
+          }
+           renderTodo();    
+        } 
+             
+        
+      
     });
 
     $("ul").on("click", "li", function () {
@@ -150,5 +174,19 @@ $(document).ready(function () {
       e.stopPropagation();
       $(this).parent().fadeOut();
     });
+
+    function renderTodo() {
+        let storedTodo = JSON.parse(localStorage.getItem("todoList"));
+        if (storedTodo !== null) {
+            // $("#input").empty();
+            for (let i = 0; i < storedTodo.length; i++){
+                var listEl = $('<li><span><i class="fa fa-trash-alt" aria-hidden="true"></i></span> ' + storedTodo[i] + "</li>");
+                $("#list").append(listEl);
+
+                $("#input").val("");
+            }
+        }
+
+    }
 
 });
