@@ -32,7 +32,7 @@ $(document).ready(function () {
 
     // The date is being appended w/ this
     var d = new Date();
-    var newDate = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
+    var newDate = (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
     $("#new-date").html(newDate);
 
 
@@ -94,7 +94,7 @@ $(document).ready(function () {
 
                         let holidayName = result.response.holidays[i].name;
 
-                        let holidayToday = $("<p>").text(holidayName);
+                        let holidayToday = $("<p>").text("Today is " + holidayName);
 
                         $("#holidayToday").append(holidayToday);
 
@@ -137,13 +137,8 @@ $(document).ready(function () {
                 //This is the temperature 
                 var tempC = (response.main.temp)
                 var convTemp = tempConvert(tempC);
-<<<<<<< HEAD
-                console.log(convTemp);
-                $("#weather").html(convTemp + "°F");
-=======
                 $("#weather").html(convTemp + "°F");
                 $("#imgIcon").attr('src', imgSource);
->>>>>>> d630ddef2415a09fcf0d55dcb8a555695836f252
 
             });
 
