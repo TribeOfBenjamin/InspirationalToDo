@@ -1,42 +1,62 @@
-body{
-background-color: #F8F8F8;
-/* auto; */
-}
+body {
 
-.top-bar{
-display: flex;
-justify-content: center;
-align-items: center;
-font-weight: bold;
-font-size: 50px;
-}
-
-.date{
-position: relative;
+  background-color: #F8F8F8;
 
 }
 
-.weather{
-position: absolute;
-right: 0;
-top: 90px;
-margin-right: 20px;
+.top-bar {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 50px;
 }
 
-.quote{
-text-align: center;
-margin: 0 30px;
+.date {
+
+  position: relative;
+
 }
 
-h1{
-font-weight:bold;
+#weatherCard {
+
+  position: absolute;
+  right: 0;
+  top: 90px;
+  margin-top: 20px;
+  margin-right: 20px;
 }
 
-.toDo{
-margin: 20px;
-text-align: center;
+#weather {
 
+  text-align: center;
+  font-size: 50px;
+  font-weight: bolder;
+}
 
+#city {
+
+  text-align: center;
+  font-size: larger;
+  font-weight: bolder;
+}
+
+.quote {
+
+  text-align: center;
+  margin: 0 30px;
+}
+
+h1 {
+
+  font-weight:bold;
+}
+
+.toDo {
+
+  margin: 20px;
+  text-align: center;
 }
 
 #input {
@@ -60,17 +80,17 @@ text-align: center;
   line-height: 40px;
 }
 
-.fa-caret-down{
+.fa-caret-down {
   float:right;
   padding: 8px;
 }
+
 .done {
   text-decoration: line-through;
   color: #aaa;
 }
 
-
-span .fa-trash-alt{
+span .fa-trash-alt {
   background-color: white;
   height: 40px;
   line-height: 40px;
@@ -80,14 +100,13 @@ span .fa-trash-alt{
   margin-right: 20px;
   margin-left: 20px;
   text-align: left;
-  /* transition: background, 0.2s linear; */
   opacity: 0;
-
 }
-li:hover span .fa-trash-alt{
+
+li:hover span .fa-trash-alt {
+  
   width: 30px;
   opacity: 1;
-
 }
 
 li {
@@ -97,9 +116,7 @@ li {
   text-align: left;
 }
 
-
-
-h3{
+h3 {
   background-color:teal;
   color: white;
   padding: 6px;

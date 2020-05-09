@@ -116,7 +116,7 @@ $(document).ready(function () {
                 var tempC = (response.main.temp)
                 var convTemp = tempConvert(tempC);
                 console.log(convTemp);
-                $(".weather").html(convTemp + "°F");
+                $("#weather").html(convTemp + "°F");
 
             });
 
