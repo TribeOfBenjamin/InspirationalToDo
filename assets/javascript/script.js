@@ -20,6 +20,7 @@ $(document).ready(function () {
         })
 
             .then(function (response) {
+                console.log("Kanye Object");
                 console.log(response);
 
                 // Creates paragraph with quote and appends to div
@@ -40,6 +41,7 @@ $(document).ready(function () {
 
     setInterval(updateClock, 1000);
 
+    // Holiday Calendar API
     // I used this SO question as a reference: https://stackoverflow.com/questions/8398897/how-to-get-current-date-in-jquery
     // let d = new Date();
 
@@ -58,17 +60,23 @@ $(document).ready(function () {
         })
         .then(function(result) {
 
-            // Hard coded with [1] for now. Will want to find a way to check the date and serve up that holiday
-            let holidayName = result.response.holidays[1].name;
+            for (let i = 0; i < result.response.holidays.length; i++) {
 
-            let holidayToday = $("<p>").text(holidayName);
+                if ((result.response.holidays[i].date.datetime.day === dateToday) && (result.response.holidays[i].date.datetime.month === monthToday)) {
+                    
+                    let holidayName = result.response.holidays[i].name;
 
-            $("#holidayToday").append(holidayToday);
+                    let holidayToday = $("<p>").text(holidayName);
 
-            console.log(holidayName);
-            console.log(result.response)
-            console.log(monthToday);
-            console.log(dateToday);
+                    $("#holidayToday").append(holidayToday);
+                    
+                    console.log(holidayName);
+                }
+            }
+
+            console.log("Holiday Object");
+            console.log(result);
+
         });
 
     }
