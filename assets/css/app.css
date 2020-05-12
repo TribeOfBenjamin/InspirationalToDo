@@ -13,10 +13,12 @@ body {
   font-size: 50px;
 }
 
-.date {
+#dateAndTime {
 
-  position: relative;
-
+  text-align: center;
+  font-weight: bold;
+  font-size: 22px;
+  margin-bottom: 20px;
 }
 
 #weatherCard {
@@ -31,7 +33,7 @@ body {
 #weather {
 
   text-align: center;
-  font-size: 50px;
+  font-size: 40px;
   font-weight: bolder;
 }
 
@@ -47,6 +49,13 @@ body {
   text-align: center;
   margin: 0px 300px;
   overflow-wrap: break-word;
+}
+
+#kanyeSays {
+
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px;
 }
 
 h1 {
@@ -129,3 +138,14 @@ h3 {
   margin: 0;
 }
 
+#holidayContainer {
+
+  text-align: center;
+  margin-top: 200px;
+}
+
+#holidayTitle {
+
+  font-weight: bold;
+  font-size: 25px;
+}

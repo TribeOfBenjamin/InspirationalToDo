@@ -1,53 +1,144 @@
 $(document).ready(function () {
-  //geolocation
-  var options = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0,
-  };
+    
+    
+    //picture
+    const numItemsToGenerate = 5; //how many gallery items you want on the screen
+    const numImagesAvailable = 242; //how many total images are in the collection you are pulling from
+    const imageWidth = 480; //your desired image width in pixels
+    const imageHeight = 480; //desired image height in pixels
+    const collectionID = 1163637; //the collection ID from the original url
+    function renderGalleryItem(randomNumber){
+   fetch(`https://source.unsplash.com/collection/${collectionID}/${imageWidth}x${imageHeight}/?sig=${randomNumber}`) 
+  .then((response)=> {    
 
-  function success(pos) {
-    var crd = pos.coords;
-    console.log(pos);
-    var lat = crd.latitude;
-    var lon = crd.longitude;
+    console.log(response);
+    let galleryItem = document.createElement('div');
+    galleryItem.classList.add('gallery-item');
+    $("body").append(`<img class="gallery-image" src="${response.url}" alt="gallery image"/>`);
+    //galleryItem.innerHTML = `<img class="gallery-image" src="${response.url}" alt="gallery image"/>`
+    document.body.appendChild(galleryItem);
+  })
+}
+for(let i=0;i<numItemsToGenerate;i++){
+  let randomImageIndex = Math.floor(Math.random() * numImagesAvailable);
+  renderGalleryItem(randomImageIndex);
+}
+    
+    
+    
+    
+    //geolocation
+    var options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+    };
 
-    console.log("Your current position is:");
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude: ${crd.longitude}`);
-    console.log(`More or less ${crd.accuracy} meters.`);
-    weatherDisplay(lat, lon);
-  }
+    function success(pos) {
+        var crd = pos.coords;
+        console.log(pos);
+        var lat = crd.latitude;
+        var lon = crd.longitude;
 
-  function error(err) {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
-  }
+        console.log('Your current position is:');
+        console.log(`Latitude : ${crd.latitude}`);
+        console.log(`Longitude: ${crd.longitude}`);
+        console.log(`More or less ${crd.accuracy} meters.`);
+        weatherDisplay(lat, lon);
 
-  navigator.geolocation.getCurrentPosition(success, error, options);
 
-  // The date is being appended w/ this
-  var d = new Date();
-  var newDate = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
-  $("#new-date").html(newDate);
 
-  // Kanye Quote API
-  function kanyeQuoteDisplay() {
-    var queryURL = "https://api.kanye.rest";
 
-    $.ajax({
-      url: queryURL,
-      method: "GET",
-    })
-    .then(function (response) {
-      console.log("Kanye Object");
-      console.log(response);
+    }
 
-      // Creates paragraph with quote and appends to div
-      let kanyeQuote = $("<p>").text('"' + response.quote + '"');
+    function error(err) {
+        console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
 
-      $("#kanyeQuote").append(kanyeQuote);
-    });
-  }
+    navigator.geolocation.getCurrentPosition(success, error, options);
+
+
+    // The date is being appended w/ this
+    var d = new Date();
+    var newDate = (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
+    $("#new-date").html(newDate);
+
+
+
+    // Kanye Quote API
+    function kanyeQuoteDisplay() {
+
+        var queryURL = "https://api.kanye.rest";
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        })
+
+            .then(function (response) {
+                console.log("Kanye Object");
+                console.log(response);
+
+                // Creates paragraph with quote and appends to div
+                let kanyeQuote = $("<p>").text('"' + response.quote + '"');
+
+                $("#kanyeQuote").append(kanyeQuote);
+
+            });
+    };
+
+    kanyeQuoteDisplay();
+
+    // Clock using moment.js
+    function updateClock() {
+
+        $("#date").text(moment().format("LTS"));
+    }
+
+    setInterval(updateClock, 1000);
+
+    // Holiday Calendar API
+    // I used this SO question as a reference: https://stackoverflow.com/questions/8398897/how-to-get-current-date-in-jquery
+    // let d = new Date();
+
+    let monthToday = d.getMonth() + 1;
+    let dateToday = d.getDate();
+
+    function USHolidaysDisplay() {
+
+        let APIKey = "29671703895b844822f5b4b4b459925e35ceadde"
+
+        var queryURL = "https://calendarific.com/api/v2/holidays?&api_key=" + APIKey + "&country=US&year=2020";
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        })
+            .then(function (result) {
+
+                for (let i = 0; i < result.response.holidays.length; i++) {
+
+                    if ((result.response.holidays[i].date.datetime.day === dateToday) && (result.response.holidays[i].date.datetime.month === monthToday)) {
+
+                        let holidayName = result.response.holidays[i].name;
+
+                        let holidayToday = $("<p>").text("Today is " + holidayName);
+
+                        $("#holidayToday").append(holidayToday);
+
+                        console.log(holidayName);
+                    }
+                }
+
+                console.log("Holiday Object");
+                console.log(result);
+
+            });
+
+    }
+
+    USHolidaysDisplay();
+
 
   kanyeQuoteDisplay();
 
@@ -68,28 +159,38 @@ $(document).ready(function () {
   function USHolidaysDisplay() {
     let APIKey = "29671703895b844822f5b4b4b459925e35ceadde";
 
-    var queryURL = "https://calendarific.com/api/v2/holidays?&api_key=" + APIKey + "&country=US&year=2020";
+    function USHolidaysDisplay() {
 
-    $.ajax({
-      url: queryURL,
-      method: "GET",
-    }).then(function (result) {
-      for (let i = 0; i < result.response.holidays.length; i++) {
-        if (result.response.holidays[i].date.datetime.day === dateToday && result.response.holidays[i].date.datetime.month === monthToday) {
-          let holidayName = result.response.holidays[i].name;
+        let APIKey = "29671703895b844822f5b4b4b459925e35ceadde"
 
-          let holidayToday = $("<p>").text(holidayName);
+        var queryURL = "https://calendarific.com/api/v2/holidays?&api_key=" + APIKey + "&country=US&year=2020";
 
-          $("#holidayToday").append(holidayToday);
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        })
+            .then(function (result) {
 
-          console.log(holidayName);
-        }
-      }
+                for (let i = 0; i < result.response.holidays.length; i++) {
 
-      console.log("Holiday Object");
-      console.log(result);
-    });
-  }
+                    if ((result.response.holidays[i].date.datetime.day === dateToday) && (result.response.holidays[i].date.datetime.month === monthToday)) {
+
+                        let holidayName = result.response.holidays[i].name;
+
+                        let holidayToday = $("<p>").text("Today is " + holidayName);
+
+                        $("#holidayToday").append(holidayToday);
+
+                        console.log(holidayName);
+                    }
+                }
+
+                console.log("Holiday Object");
+                console.log(result);
+
+            });
+
+    }
 
   USHolidaysDisplay();
 
