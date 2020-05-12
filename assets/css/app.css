@@ -106,7 +106,7 @@ span .fa-trash-alt {
 
 li:hover span .fa-trash-alt {
   
-  width: 30px;
+  width: 20px;
   opacity: 1;
 }
 
@@ -115,6 +115,11 @@ li {
   background-color: white;
   color: #555;
   text-align: left;
+}
+.completeItem{
+  float:right;
+  margin-right:40px;
+  margin-top:10px;
 }
 
 h3 {
