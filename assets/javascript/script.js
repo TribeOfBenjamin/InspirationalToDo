@@ -2,21 +2,21 @@ $(document).ready(function () {
     
     
     //picture
-    const numItemsToGenerate = 5; //how many gallery items you want on the screen
-    const numImagesAvailable = 242; //how many total images are in the collection you are pulling from
+    const numItemsToGenerate = 1; //how many gallery items you want on the screen
+    const numImagesAvailable = 479; //how many total images are in the collection you are pulling from
     const imageWidth = 480; //your desired image width in pixels
     const imageHeight = 480; //desired image height in pixels
-    const collectionID = 1163637; //the collection ID from the original url
+    const collectionID = 827743; //the collection ID from the original url
     function renderGalleryItem(randomNumber){
    fetch(`https://source.unsplash.com/collection/${collectionID}/${imageWidth}x${imageHeight}/?sig=${randomNumber}`) 
   .then((response)=> {    
 
-    console.log(response);
-    let galleryItem = document.createElement('div');
-    galleryItem.classList.add('gallery-item');
+    //console.log(response);
+    //let galleryItem = document.createElement('div');
+    //galleryItem.classList.add('gallery-item');
     $("body").append(`<img class="gallery-image" src="${response.url}" alt="gallery image"/>`);
     //galleryItem.innerHTML = `<img class="gallery-image" src="${response.url}" alt="gallery image"/>`
-    document.body.appendChild(galleryItem);
+    //document.body.appendChild(galleryItem);
   })
 }
 for(let i=0;i<numItemsToGenerate;i++){
@@ -80,7 +80,7 @@ for(let i=0;i<numItemsToGenerate;i++){
                 console.log(response);
 
                 // Creates paragraph with quote and appends to div
-                let kanyeQuote = $("<p>").text(response.quote);
+                let kanyeQuote = $("<p>").text('"' + response.quote + '"');
 
                 $("#kanyeQuote").append(kanyeQuote);
 
@@ -156,13 +156,17 @@ for(let i=0;i<numItemsToGenerate;i++){
         })
 
             .then(function (response) {
+                var imgSource = "http://openweathermap.org/img/wn/"+ response.weather[0].icon + "@2x.png"
                 // This is logging the name of the city 
+                console.log(response);
+                console.log(response.weather[0].icon);
                 var city = response.name;
                 $("#city").html(city);
                 //This is the temperature 
                 var tempC = (response.main.temp)
                 var convTemp = tempConvert(tempC);
-                $(".weather").html(convTemp + "°F");
+                $("#weather").html(convTemp + "°F");
+                $("#imgIcon").attr('src', imgSource);
 
             });
 
