@@ -164,7 +164,12 @@ $(document).ready(function () {
 
   $("ul").on("click", "span", function (e) {
     e.stopPropagation();
-    $(this).parent().fadeOut();
+    $(this).parent().remove();
+    let storedTodo = JSON.parse(localStorage.getItem[todoLists]);
+    
+    for (var i = 0; i < storedTodo.length;i++){
+      
+    }
   });
     
   $("ul").on("mouseenter", "#trash", function () {
@@ -179,7 +184,7 @@ $(document).ready(function () {
     if (storedTodo !== null) {
       $("#list").empty();
       for (let i = 0; i < storedTodo.length; i++) {
-        var listEl = $('<li><span><i class="fa fa-trash-alt" id="trash" aria-hidden="true"></i></span> ' + storedTodo[i].todoTask + "</li>");
+        var listEl = $('<li><span><i class="fa fa-trash-alt" id="trash" aria-hidden="true"></i></span> ' + storedTodo[i].todoTask + '<input class = "completeItem" type = "checkbox">'+"</li>");
         $("#list").append(listEl);
         $("#input").val("");
       }
