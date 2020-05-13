@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
  
   var imageURLs = [
     "assets/images/pic1.jpg"
@@ -44,6 +45,7 @@ $('#photo').append(getImageTag());
         console.log(`Longitude: ${crd.longitude}`);
         console.log(`More or less ${crd.accuracy} meters.`);
         weatherDisplay(lat, lon);
+
     }
 
 
@@ -210,24 +212,25 @@ $('#photo').append(getImageTag());
     }
   });
 
-  $("ul").on("click", "li", function () {
-    // $(this).toggleClass("done");
+  $("ul").on("click", ".completeItem", function () {
+    
     let currentTask = $(this).parent().text().trim();
     console.log("currentTask: ", currentTask);
-    // let todoLists = JSON.parse(localStorage.getItem("todoList"));
+    let todoLists = JSON.parse(localStorage.getItem("todoList"));
 
-    // let getIndex = todoLists
-    //   .map(function (todoObject) {
-    //     return todoObject.todoTask;
-    //   })
-    //   .indexOf(currentTask);
+    let getIndex = todoLists
+      .map(function (todoObject) {
+        return todoObject.todoTask;
+      })
+      .indexOf(currentTask);
 
-    // if (todoLists[getIndex].isDone === false) {
-    //   todoLists[getIndex].isDone = true;
-    // } else {
-    //   todoLists[getIndex].isDone = false;
-    // }
-    // localStorage.setItem("todoList", JSON.stringify(todoLists));
+    if (todoLists[getIndex].isDone === false) {
+      todoLists[getIndex].isDone = true;
+    } else {
+      todoLists[getIndex].isDone = false;
+    }
+    localStorage.setItem("todoList", JSON.stringify(todoLists));
+    $("li").toggleClass("done");
   });
 
   $("ul").on("click", "span", function (e) {
