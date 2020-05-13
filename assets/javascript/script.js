@@ -22,6 +22,7 @@ function getImageTag() {
 }
 
 $('#photo').append(getImageTag()); 
+// $('body').prepend(getImageTag());
             
     
 

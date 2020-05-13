@@ -13,12 +13,26 @@ body {
   font-size: 50px;
 }
 
-#dateAndTime {
+img{
+position: absolute;
+left: 0px;
+top: 0 px;
+z-index: -10;
+opacity: .50;
+}
 
-  text-align: center;
+
+#dateAndTime {
+ 
+  position: absolute;
+  left: 0;
+  top: 90px;
+  margin-top: 20px;
+  margin-left: 20px;
+  /* text-align: center;
   font-weight: bold;
   font-size: 22px;
-  margin-bottom: 20px;
+  margin-bottom: 20px; */
 }
 
 #weatherCard {
@@ -37,12 +51,12 @@ body {
   font-weight: bolder;
 }
 
-#city {
+/* #city {
 
   text-align: center;
   font-size: larger;
   font-weight: bolder;
-}
+} */
 
 #kanyeQuote {
 
@@ -52,7 +66,7 @@ body {
 }
 
 #kanyeSays {
-
+  
   text-align: center;
   font-weight: bold;
   font-size: 25px;
