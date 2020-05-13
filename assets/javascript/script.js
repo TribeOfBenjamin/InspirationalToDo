@@ -230,7 +230,9 @@ $('#photo').append(getImageTag());
     }
     localStorage.setItem("todoList", JSON.stringify(todoLists));
     $("li").toggleClass("done");
+    $("li").find("input[type='checkbox']").prop('checked', true);
   });
+
 
   $("ul").on("click", "span", function (e) {
     e.stopPropagation();
@@ -263,6 +265,10 @@ $('#photo').append(getImageTag());
       for (let i = 0; i < storedTodo.length; i++) {
         var listEl = $('<li><span><i class="fa fa-trash-alt" id="trash" aria-hidden="true"></i></span> ' + storedTodo[i].todoTask + '<input class = "completeItem" type = "checkbox">' + "</li>");
         $("#list").append(listEl);
+        if (storedTodo[i].isDone === true) {
+          $("li").toggleClass("done");
+          $("li").find("input[type='checkbox']").prop("checked", true);
+        }
         $("#input").val("");
       }
     }
