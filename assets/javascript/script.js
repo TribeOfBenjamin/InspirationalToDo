@@ -1,5 +1,27 @@
 $(document).ready(function () {
-    
+  
+  var imageURLs = [
+    "pic/pic1.jpg"
+  , "pic/pic2.jpg"
+  , "pic/pic3.jpg"
+  , "pic/pic4.jpg"
+  , "pic/pic5.jpg"
+  , "pic/pic6.jpg"
+  , "pic/pic7.jpg"
+  , "pic/pic8.jpg"
+
+];
+function getImageTag() {
+ var randomIndex = Math.floor(Math.random() * imageURLs.length);
+ var randomPic = imageURLs[randomIndex];
+ var img = $("<img>");
+ img.attr("src",randomPic);
+ img.attr("alt","picture");
+ console.log(img);
+ return img;
+}
+
+$('#photo').append(getImageTag()); 
             
     
     //geolocation
