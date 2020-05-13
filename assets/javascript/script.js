@@ -1,11 +1,36 @@
 $(document).ready(function () {
+ 
+  var imageURLs = [
+    "pic/pic1.jpg"
+  , "pic/pic2.jpg"
+  , "pic/pic3.jpg"
+  , "pic/pic4.jpg"
+  , "pic/pic5.jpg"
+  , "pic/pic6.jpg"
+  , "pic/pic7.jpg"
+  , "pic/pic8.jpg"
 
-  //geolocation
-  var options = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0
-  };
+];
+function getImageTag() {
+ var randomIndex = Math.floor(Math.random() * imageURLs.length);
+ var randomPic = imageURLs[randomIndex];
+ var img = $("<img>");
+ img.attr("src",randomPic);
+ img.attr("alt","picture");
+ console.log(img);
+ return img;
+}
+
+$('#photo').append(getImageTag()); 
+            
+    
+
+    //geolocation
+    var options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+    };
 
   function success(pos) {
     var crd = pos.coords;
@@ -13,16 +38,13 @@ $(document).ready(function () {
     var lat = crd.latitude;
     var lon = crd.longitude;
 
-    console.log('Your current position is:');
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude: ${crd.longitude}`);
-    console.log(`More or less ${crd.accuracy} meters.`);
-    weatherDisplay(lat, lon);
+        console.log('Your current position is:');
+        console.log(`Latitude : ${crd.latitude}`);
+        console.log(`Longitude: ${crd.longitude}`);
+        console.log(`More or less ${crd.accuracy} meters.`);
+        weatherDisplay(lat, lon);
+    }
 
-
-
-
-  }
 
   function error(err) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
@@ -74,8 +96,8 @@ $(document).ready(function () {
   // I used this SO question as a reference: https://stackoverflow.com/questions/8398897/how-to-get-current-date-in-jquery
   // let d = new Date();
 
-  let monthToday = d.getMonth() + 1;
-  let dateToday = d.getDate();
+    monthToday = d.getMonth() + 1;
+    dateToday = d.getDate();
 
   function USHolidaysDisplay() {
 
@@ -243,5 +265,6 @@ $(document).ready(function () {
     }
   }
 
+    
 
 });
