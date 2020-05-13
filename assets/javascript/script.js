@@ -1,14 +1,14 @@
 $(document).ready(function () {
  
   var imageURLs = [
-    "pic/pic1.jpg"
-  , "pic/pic2.jpg"
-  , "pic/pic3.jpg"
-  , "pic/pic4.jpg"
-  , "pic/pic5.jpg"
-  , "pic/pic6.jpg"
-  , "pic/pic7.jpg"
-  , "pic/pic8.jpg"
+    "assets/images/pic1.jpg"
+  , "assets/images/pic2.jpg"
+  , "assets/images/pic3.jpg"
+  , "assets/images/pic4.jpg"
+  , "assets/images/pic5.jpg"
+  , "assets/images/pic6.jpg"
+  , "assets/images/pic7.jpg"
+  , "assets/images/pic8.jpg"
 
 ];
 function getImageTag() {
