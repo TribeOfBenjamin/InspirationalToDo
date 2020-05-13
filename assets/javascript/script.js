@@ -1,38 +1,33 @@
 $(document).ready(function () {
-
- 
   var imageURLs = [
-    "assets/images/pic1.jpg"
-  , "assets/images/pic2.jpg"
-  , "assets/images/pic3.jpg"
-  , "assets/images/pic4.jpg"
-  , "assets/images/pic5.jpg"
-  , "assets/images/pic6.jpg"
-  , "assets/images/pic7.jpg"
-  , "assets/images/pic8.jpg"
+    "assets/images/pic1.jpg",
+    "assets/images/pic2.jpg",
+    "assets/images/pic3.jpg",
+    "assets/images/pic4.jpg",
+    "assets/images/pic5.jpg",
+    "assets/images/pic6.jpg",
+    "assets/images/pic7.jpg",
+    "assets/images/pic8.jpg",
+  ];
+  function getImageTag() {
+    var randomIndex = Math.floor(Math.random() * imageURLs.length);
+    var randomPic = imageURLs[randomIndex];
+    var img = $("<img>");
+    img.attr("src", randomPic);
+    img.attr("alt", "picture");
+    console.log(img);
+    return img;
+  }
 
-];
-function getImageTag() {
- var randomIndex = Math.floor(Math.random() * imageURLs.length);
- var randomPic = imageURLs[randomIndex];
- var img = $("<img>");
- img.attr("src",randomPic);
- img.attr("alt","picture");
- console.log(img);
- return img;
-}
+  $("#photo").append(getImageTag());
+  // $('body').prepend(getImageTag());
 
-$('#photo').append(getImageTag()); 
-// $('body').prepend(getImageTag());
-            
-    
-
-    //geolocation
-    var options = {
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 0
-    };
+  //geolocation
+  var options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0,
+  };
 
   function success(pos) {
     var crd = pos.coords;
@@ -40,14 +35,12 @@ $('#photo').append(getImageTag());
     var lat = crd.latitude;
     var lon = crd.longitude;
 
-        console.log('Your current position is:');
-        console.log(`Latitude : ${crd.latitude}`);
-        console.log(`Longitude: ${crd.longitude}`);
-        console.log(`More or less ${crd.accuracy} meters.`);
-        weatherDisplay(lat, lon);
-
-    }
-
+    console.log("Your current position is:");
+    console.log(`Latitude : ${crd.latitude}`);
+    console.log(`Longitude: ${crd.longitude}`);
+    console.log(`More or less ${crd.accuracy} meters.`);
+    weatherDisplay(lat, lon);
+  }
 
   function error(err) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
@@ -55,41 +48,33 @@ $('#photo').append(getImageTag());
 
   navigator.geolocation.getCurrentPosition(success, error, options);
 
-
   // The date is being appended w/ this
   var d = new Date();
-  var newDate = (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
+  var newDate = d.getMonth() + 1 + "/" + d.getDate() + "/" + d.getFullYear();
   $("#new-date").html(newDate);
-
-
 
   // Kanye Quote API
   function kanyeQuoteDisplay() {
-
     var queryURL = "https://api.kanye.rest";
 
     $.ajax({
       url: queryURL,
-      method: "GET"
-    })
+      method: "GET",
+    }).then(function (response) {
+      console.log("Kanye Object");
+      console.log(response);
 
-      .then(function (response) {
-        console.log("Kanye Object");
-        console.log(response);
+      // Creates paragraph with quote and appends to div
+      let kanyeQuote = $("<p>").text('"' + response.quote + '"');
 
-        // Creates paragraph with quote and appends to div
-        let kanyeQuote = $("<p>").text('"' + response.quote + '"');
-
-        $("#kanyeQuote").append(kanyeQuote);
-
-      });
-  };
+      $("#kanyeQuote").append(kanyeQuote);
+    });
+  }
 
   kanyeQuoteDisplay();
 
   // Clock using moment.js
   function updateClock() {
-
     $("#date").text(moment().format("LTS"));
   }
 
@@ -99,44 +84,36 @@ $('#photo').append(getImageTag());
   // I used this SO question as a reference: https://stackoverflow.com/questions/8398897/how-to-get-current-date-in-jquery
   // let d = new Date();
 
-    monthToday = d.getMonth() + 1;
-    dateToday = d.getDate();
+  monthToday = d.getMonth() + 1;
+  dateToday = d.getDate();
 
   function USHolidaysDisplay() {
-
-    let APIKey = "29671703895b844822f5b4b4b459925e35ceadde"
+    let APIKey = "29671703895b844822f5b4b4b459925e35ceadde";
 
     var queryURL = "https://calendarific.com/api/v2/holidays?&api_key=" + APIKey + "&country=US&year=2020";
 
     $.ajax({
       url: queryURL,
-      method: "GET"
-    })
-      .then(function (result) {
+      method: "GET",
+    }).then(function (result) {
+      for (let i = 0; i < result.response.holidays.length; i++) {
+        if (result.response.holidays[i].date.datetime.day === dateToday && result.response.holidays[i].date.datetime.month === monthToday) {
+          let holidayName = result.response.holidays[i].name;
 
-        for (let i = 0; i < result.response.holidays.length; i++) {
+          let holidayToday = $("<p>").text("Today is " + holidayName);
 
-          if ((result.response.holidays[i].date.datetime.day === dateToday) && (result.response.holidays[i].date.datetime.month === monthToday)) {
+          $("#holidayToday").append(holidayToday);
 
-            let holidayName = result.response.holidays[i].name;
-
-            let holidayToday = $("<p>").text("Today is " + holidayName);
-
-            $("#holidayToday").append(holidayToday);
-
-            console.log(holidayName);
-          }
+          console.log(holidayName);
         }
+      }
 
-        console.log("Holiday Object");
-        console.log(result);
-
-      });
-
+      console.log("Holiday Object");
+      console.log(result);
+    });
   }
 
   USHolidaysDisplay();
-
 
   // Function for the weather and current city
   $("#searchBtn").on("click", weatherDisplay);
@@ -146,24 +123,22 @@ $('#photo').append(getImageTag());
     $.ajax({
       url: queryURL,
       method: "GET",
-    })
-      .then(function (response) {
-
-        // this is grabbing the icon for the weather
-        var imgSource = "http://openweathermap.org/img/wn/" + response.weather[0].icon + "@2x.png"
-        // This is logging the name of the city
-        console.log(response);
-        console.log(response.weather[0].icon);        
-        var city = response.name;
-        $("#city").html(city);
-        //This is the temperature
-        var tempC = response.main.temp;
-        var convTemp = tempConvert(tempC);
-        console.log(convTemp);
-        $("#weather").html(convTemp + "°F");
-         //appending the icon image onto the html
-         $("#imgIcon").attr('src', imgSource);
-      });
+    }).then(function (response) {
+      // this is grabbing the icon for the weather
+      var imgSource = "http://openweathermap.org/img/wn/" + response.weather[0].icon + "@2x.png";
+      // This is logging the name of the city
+      console.log(response);
+      console.log(response.weather[0].icon);
+      var city = response.name;
+      $("#city").html(city);
+      //This is the temperature
+      var tempC = response.main.temp;
+      var convTemp = tempConvert(tempC);
+      console.log(convTemp);
+      $("#weather").html(convTemp + "°F");
+      //appending the icon image onto the html
+      $("#imgIcon").attr("src", imgSource);
+    });
   }
 
   // This function converts temperature to farenheight
@@ -180,18 +155,19 @@ $('#photo').append(getImageTag());
   // To-Do script functions
 
   $(".fa-caret-down").on("click", function () {
-
+    
     $("#input").slideToggle("slow");
     $("#input").focus();
     renderTodo();
 
   });
+
   //creating objects to store in local-storage
   var todoListObj = {
     todoTask: "",
     isDone: false,
   };
-
+  
   $("#input").keypress(function (event) {
     if (event.keyCode === 13) {
       event.preventDefault();
@@ -212,10 +188,8 @@ $('#photo').append(getImageTag());
     }
   });
 
-  $("ul").on("click", ".completeItem", function () {
-    
+  $("ul").delegate('input[type="checkbox"]', "change", function () {
     let currentTask = $(this).parent().text().trim();
-    console.log("currentTask: ", currentTask);
     let todoLists = JSON.parse(localStorage.getItem("todoList"));
 
     let getIndex = todoLists
@@ -230,10 +204,8 @@ $('#photo').append(getImageTag());
       todoLists[getIndex].isDone = false;
     }
     localStorage.setItem("todoList", JSON.stringify(todoLists));
-    $("li").toggleClass("done");
-    $("li").find("input[type='checkbox']").prop('checked', true);
+    renderTodo();
   });
-
 
   $("ul").on("click", "span", function (e) {
     e.stopPropagation();
@@ -249,7 +221,6 @@ $('#photo').append(getImageTag());
     todoLists.splice(removeIndex, 1);
     localStorage.setItem("todoList", JSON.stringify(todoLists));
     $(this).parent().remove();
-
   });
 
   $("ul").on("mouseenter", "#trash", function () {
@@ -264,17 +235,22 @@ $('#photo').append(getImageTag());
     if (storedTodo !== null) {
       $("#list").empty();
       for (let i = 0; i < storedTodo.length; i++) {
-        var listEl = $('<li><span><i class="fa fa-trash-alt" id="trash" aria-hidden="true"></i></span> ' + storedTodo[i].todoTask + '<input class = "completeItem" type = "checkbox">' + "</li>");
-        $("#list").append(listEl);
+        let listItem = $('<li><span><i class="fa fa-trash-alt" id="trash" aria-hidden="true"></i></span>');
+        let pTag = $('<p class="ptag">').css("display", "inline-block");
+        let checkBox = $("<input class='completeItem' type='checkbox' >").css("display", "inline-block");
         if (storedTodo[i].isDone === true) {
-          $("li").toggleClass("done");
-          $("li").find("input[type='checkbox']").prop("checked", true);
+          pTag.addClass("done");
+          pTag.text(storedTodo[i].todoTask);
+          checkBox.prop("checked", true);
+        } else {
+          pTag.text(storedTodo[i].todoTask);
+          checkBox.prop("checked", false);
         }
-        $("#input").val("");
+        listItem.append(pTag, checkBox)
+
+        $("#list").append(listItem);
       }
     }
+    $("#input").val("");
   }
-
-    
-
 });
