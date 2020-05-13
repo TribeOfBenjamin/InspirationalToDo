@@ -1,12 +1,12 @@
 $(document).ready(function () {
-    
-    
+
+
     //picture
     const numItemsToGenerate = 5; //how many gallery items you want on the screen
     const numImagesAvailable = 242; //how many total images are in the collection you are pulling from
     const imageWidth = 480; //your desired image width in pixels
     const imageHeight = 480; //desired image height in pixels
-    const collectionID = 1163637; //the collection ID from the original url
+  const collectionID = 1163637; //the collection ID from the original url
     function renderGalleryItem(randomNumber){
    fetch(`https://source.unsplash.com/collection/${collectionID}/${imageWidth}x${imageHeight}/?sig=${randomNumber}`) 
   .then((response)=> {    
@@ -18,15 +18,15 @@ $(document).ready(function () {
     //galleryItem.innerHTML = `<img class="gallery-image" src="${response.url}" alt="gallery image"/>`
     document.body.appendChild(galleryItem);
   })
-}
+    }
 for(let i=0;i<numItemsToGenerate;i++){
   let randomImageIndex = Math.floor(Math.random() * numImagesAvailable);
   renderGalleryItem(randomImageIndex);
 }
     
     
-    
-    
+  
+  
     //geolocation
     var options = {
         enableHighAccuracy: true,
@@ -140,60 +140,6 @@ for(let i=0;i<numItemsToGenerate;i++){
     USHolidaysDisplay();
 
 
-  kanyeQuoteDisplay();
-
-  // Clock using moment.js
-  function updateClock() {
-    $("#date").text(moment().format("LTS"));
-  }
-
-  setInterval(updateClock, 1000);
-
-  // Holiday Calendar API
-  // I used this SO question as a reference: https://stackoverflow.com/questions/8398897/how-to-get-current-date-in-jquery
-  // let d = new Date();
-
-  let monthToday = d.getMonth() + 1;
-  let dateToday = d.getDate();
-
-  function USHolidaysDisplay() {
-    let APIKey = "29671703895b844822f5b4b4b459925e35ceadde";
-
-    function USHolidaysDisplay() {
-
-        let APIKey = "29671703895b844822f5b4b4b459925e35ceadde"
-
-        var queryURL = "https://calendarific.com/api/v2/holidays?&api_key=" + APIKey + "&country=US&year=2020";
-
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
-            .then(function (result) {
-
-                for (let i = 0; i < result.response.holidays.length; i++) {
-
-                    if ((result.response.holidays[i].date.datetime.day === dateToday) && (result.response.holidays[i].date.datetime.month === monthToday)) {
-
-                        let holidayName = result.response.holidays[i].name;
-
-                        let holidayToday = $("<p>").text("Today is " + holidayName);
-
-                        $("#holidayToday").append(holidayToday);
-
-                        console.log(holidayName);
-                    }
-                }
-
-                console.log("Holiday Object");
-                console.log(result);
-
-            });
-
-    }
-
-  USHolidaysDisplay();
-
   // Function for the weather and current city
   $("#searchBtn").on("click", weatherDisplay);
   function weatherDisplay(lat, lon) {
@@ -226,6 +172,8 @@ for(let i=0;i<numItemsToGenerate;i++){
     return faren;
   }
 
+  // To-Do script functions
+
     $(".fa-caret-down").on("click", function () {
      
         $("#input").slideToggle("slow");
@@ -233,7 +181,7 @@ for(let i=0;i<numItemsToGenerate;i++){
         renderTodo();
       
   });
-
+  //creating objects to store in local-storage
   var todoListObj = {
     todoTask: "",
     isDone: false,
@@ -243,7 +191,7 @@ for(let i=0;i<numItemsToGenerate;i++){
     if (event.keyCode === 13) {
       event.preventDefault();
 
-      var todoLists = JSON.parse(localStorage.getItem("todoList"));
+      let todoLists = JSON.parse(localStorage.getItem("todoList"));
       var todo = $("#input").val();
       if (todo !== "") {
         if (todoLists === null) {
@@ -260,17 +208,40 @@ for(let i=0;i<numItemsToGenerate;i++){
   });
 
   $("ul").on("click", "li", function () {
-    $(this).toggleClass("done");
+    // $(this).toggleClass("done");
+    let currentTask = $(this).parent().text().trim();
+    console.log("currentTask: ", currentTask);
+    // let todoLists = JSON.parse(localStorage.getItem("todoList"));
+
+    // let getIndex = todoLists
+    //   .map(function (todoObject) {
+    //     return todoObject.todoTask;
+    //   })
+    //   .indexOf(currentTask);
+
+    // if (todoLists[getIndex].isDone === false) {
+    //   todoLists[getIndex].isDone = true;
+    // } else {
+    //   todoLists[getIndex].isDone = false;
+    // }
+    // localStorage.setItem("todoList", JSON.stringify(todoLists));
   });
 
   $("ul").on("click", "span", function (e) {
     e.stopPropagation();
-    $(this).parent().remove();
-    let storedTodo = JSON.parse(localStorage.getItem[todoLists]);
+    let taskToRemove = $(this).parent().text().trim();
+    let todoLists = JSON.parse(localStorage.getItem("todoList"));
     
-    for (var i = 0; i < storedTodo.length;i++){
-      
-    }
+    let removeIndex = todoLists
+      .map(function (todoObject) {
+        return todoObject.todoTask;
+      })
+      .indexOf(taskToRemove);
+    
+    todoLists.splice(removeIndex, 1);
+    localStorage.setItem("todoList", JSON.stringify(todoLists));
+    $(this).parent().remove();
+
   });
     
   $("ul").on("mouseenter", "#trash", function () {
@@ -285,7 +256,7 @@ for(let i=0;i<numItemsToGenerate;i++){
     if (storedTodo !== null) {
       $("#list").empty();
       for (let i = 0; i < storedTodo.length; i++) {
-        var listEl = $('<li><span><i class="fa fa-trash-alt" id="trash" aria-hidden="true"></i></span> ' + storedTodo[i].todoTask + '<input class = "completeItem" type = "checkbox">'+"</li>");
+        var listEl = $('<li><span><i class="fa fa-trash-alt" id="trash" aria-hidden="true"></i></span> ' + storedTodo[i].todoTask + '<input class = "completeItem" type = "checkbox">' + "</li>");
         $("#list").append(listEl);
         $("#input").val("");
       }
