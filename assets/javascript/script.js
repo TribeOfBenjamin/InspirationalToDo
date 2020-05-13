@@ -1,116 +1,116 @@
 $(document).ready(function () {
 
-    //geolocation
-    var options = {
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 0
-    };
+  //geolocation
+  var options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  };
 
-    function success(pos) {
-        var crd = pos.coords;
-        console.log(pos);
-        var lat = crd.latitude;
-        var lon = crd.longitude;
+  function success(pos) {
+    var crd = pos.coords;
+    console.log(pos);
+    var lat = crd.latitude;
+    var lon = crd.longitude;
 
-        console.log('Your current position is:');
-        console.log(`Latitude : ${crd.latitude}`);
-        console.log(`Longitude: ${crd.longitude}`);
-        console.log(`More or less ${crd.accuracy} meters.`);
-        weatherDisplay(lat, lon);
-
-
-
-
-    }
-
-    function error(err) {
-        console.warn(`ERROR(${err.code}): ${err.message}`);
-    }
-
-    navigator.geolocation.getCurrentPosition(success, error, options);
-
-
-    // The date is being appended w/ this
-    var d = new Date();
-    var newDate = (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
-    $("#new-date").html(newDate);
+    console.log('Your current position is:');
+    console.log(`Latitude : ${crd.latitude}`);
+    console.log(`Longitude: ${crd.longitude}`);
+    console.log(`More or less ${crd.accuracy} meters.`);
+    weatherDisplay(lat, lon);
 
 
 
-    // Kanye Quote API
-    function kanyeQuoteDisplay() {
 
-        var queryURL = "https://api.kanye.rest";
+  }
 
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
+  function error(err) {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+  }
 
-            .then(function (response) {
-                console.log("Kanye Object");
-                console.log(response);
+  navigator.geolocation.getCurrentPosition(success, error, options);
 
-                // Creates paragraph with quote and appends to div
-                let kanyeQuote = $("<p>").text('"' + response.quote + '"');
 
-                $("#kanyeQuote").append(kanyeQuote);
+  // The date is being appended w/ this
+  var d = new Date();
+  var newDate = (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
+  $("#new-date").html(newDate);
 
-            });
-    };
 
-    kanyeQuoteDisplay();
 
-    // Clock using moment.js
-    function updateClock() {
+  // Kanye Quote API
+  function kanyeQuoteDisplay() {
 
-        $("#date").text(moment().format("LTS"));
-    }
+    var queryURL = "https://api.kanye.rest";
 
-    setInterval(updateClock, 1000);
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    })
 
-    // Holiday Calendar API
-    // I used this SO question as a reference: https://stackoverflow.com/questions/8398897/how-to-get-current-date-in-jquery
-    // let d = new Date();
+      .then(function (response) {
+        console.log("Kanye Object");
+        console.log(response);
 
-    let monthToday = d.getMonth() + 1;
-    let dateToday = d.getDate();
+        // Creates paragraph with quote and appends to div
+        let kanyeQuote = $("<p>").text('"' + response.quote + '"');
 
-    function USHolidaysDisplay() {
+        $("#kanyeQuote").append(kanyeQuote);
 
-        let APIKey = "29671703895b844822f5b4b4b459925e35ceadde"
+      });
+  };
 
-        var queryURL = "https://calendarific.com/api/v2/holidays?&api_key=" + APIKey + "&country=US&year=2020";
+  kanyeQuoteDisplay();
 
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
-            .then(function (result) {
+  // Clock using moment.js
+  function updateClock() {
 
-                for (let i = 0; i < result.response.holidays.length; i++) {
+    $("#date").text(moment().format("LTS"));
+  }
 
-                    if ((result.response.holidays[i].date.datetime.day === dateToday) && (result.response.holidays[i].date.datetime.month === monthToday)) {
+  setInterval(updateClock, 1000);
 
-                        let holidayName = result.response.holidays[i].name;
+  // Holiday Calendar API
+  // I used this SO question as a reference: https://stackoverflow.com/questions/8398897/how-to-get-current-date-in-jquery
+  // let d = new Date();
 
-                        let holidayToday = $("<p>").text("Today is " + holidayName);
+  let monthToday = d.getMonth() + 1;
+  let dateToday = d.getDate();
 
-                        $("#holidayToday").append(holidayToday);
+  function USHolidaysDisplay() {
 
-                        console.log(holidayName);
-                    }
-                }
+    let APIKey = "29671703895b844822f5b4b4b459925e35ceadde"
 
-                console.log("Holiday Object");
-                console.log(result);
+    var queryURL = "https://calendarific.com/api/v2/holidays?&api_key=" + APIKey + "&country=US&year=2020";
 
-            });
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    })
+      .then(function (result) {
 
-    }
+        for (let i = 0; i < result.response.holidays.length; i++) {
 
-    USHolidaysDisplay();
+          if ((result.response.holidays[i].date.datetime.day === dateToday) && (result.response.holidays[i].date.datetime.month === monthToday)) {
+
+            let holidayName = result.response.holidays[i].name;
+
+            let holidayToday = $("<p>").text("Today is " + holidayName);
+
+            $("#holidayToday").append(holidayToday);
+
+            console.log(holidayName);
+          }
+        }
+
+        console.log("Holiday Object");
+        console.log(result);
+
+      });
+
+  }
+
+  USHolidaysDisplay();
 
 
   // Function for the weather and current city
@@ -122,16 +122,23 @@ $(document).ready(function () {
       url: queryURL,
       method: "GET",
     })
-    .then(function (response) {
-      // This is logging the name of the city
-      var city = response.name;
-      $("#city").html(city);
-      //This is the temperature
-      var tempC = response.main.temp;
-      var convTemp = tempConvert(tempC);
-      console.log(convTemp);
-      $("#weather").html(convTemp + "°F");
-    });
+      .then(function (response) {
+
+        // this is grabbing the icon for the weather
+        var imgSource = "http://openweathermap.org/img/wn/" + response.weather[0].icon + "@2x.png"
+        // This is logging the name of the city
+        console.log(response);
+        console.log(response.weather[0].icon);        
+        var city = response.name;
+        $("#city").html(city);
+        //This is the temperature
+        var tempC = response.main.temp;
+        var convTemp = tempConvert(tempC);
+        console.log(convTemp);
+        $("#weather").html(convTemp + "°F");
+         //appending the icon image onto the html
+         $("#imgIcon").attr('src', imgSource);
+      });
   }
 
   // This function converts temperature to farenheight
@@ -147,12 +154,12 @@ $(document).ready(function () {
 
   // To-Do script functions
 
-    $(".fa-caret-down").on("click", function () {
-     
-        $("#input").slideToggle("slow");
-        $("#input").focus();
-        renderTodo();
-      
+  $(".fa-caret-down").on("click", function () {
+
+    $("#input").slideToggle("slow");
+    $("#input").focus();
+    renderTodo();
+
   });
   //creating objects to store in local-storage
   var todoListObj = {
@@ -204,19 +211,19 @@ $(document).ready(function () {
     e.stopPropagation();
     let taskToRemove = $(this).parent().text().trim();
     let todoLists = JSON.parse(localStorage.getItem("todoList"));
-    
+
     let removeIndex = todoLists
       .map(function (todoObject) {
         return todoObject.todoTask;
       })
       .indexOf(taskToRemove);
-    
+
     todoLists.splice(removeIndex, 1);
     localStorage.setItem("todoList", JSON.stringify(todoLists));
     $(this).parent().remove();
 
   });
-    
+
   $("ul").on("mouseenter", "#trash", function () {
     $(this).css("fontSize", "25px");
   });
@@ -236,5 +243,5 @@ $(document).ready(function () {
     }
   }
 
-    
+
 });
