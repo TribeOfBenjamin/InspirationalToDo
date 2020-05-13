@@ -6,7 +6,7 @@ $(document).ready(function () {
     const numImagesAvailable = 242; //how many total images are in the collection you are pulling from
     const imageWidth = 480; //your desired image width in pixels
     const imageHeight = 480; //desired image height in pixels
-  const collectionID = 1163637; //the collection ID from the original url
+    const collectionID = 1163637; //the collection ID from the original url
     function renderGalleryItem(randomNumber){
    fetch(`https://source.unsplash.com/collection/${collectionID}/${imageWidth}x${imageHeight}/?sig=${randomNumber}`) 
   .then((response)=> {    
@@ -207,24 +207,25 @@ for(let i=0;i<numItemsToGenerate;i++){
     }
   });
 
-  $("ul").on("click", "li", function () {
-    // $(this).toggleClass("done");
+  $("ul").on("click", ".completeItem", function () {
+    
     let currentTask = $(this).parent().text().trim();
     console.log("currentTask: ", currentTask);
-    // let todoLists = JSON.parse(localStorage.getItem("todoList"));
+    let todoLists = JSON.parse(localStorage.getItem("todoList"));
 
-    // let getIndex = todoLists
-    //   .map(function (todoObject) {
-    //     return todoObject.todoTask;
-    //   })
-    //   .indexOf(currentTask);
+    let getIndex = todoLists
+      .map(function (todoObject) {
+        return todoObject.todoTask;
+      })
+      .indexOf(currentTask);
 
-    // if (todoLists[getIndex].isDone === false) {
-    //   todoLists[getIndex].isDone = true;
-    // } else {
-    //   todoLists[getIndex].isDone = false;
-    // }
-    // localStorage.setItem("todoList", JSON.stringify(todoLists));
+    if (todoLists[getIndex].isDone === false) {
+      todoLists[getIndex].isDone = true;
+    } else {
+      todoLists[getIndex].isDone = false;
+    }
+    localStorage.setItem("todoList", JSON.stringify(todoLists));
+    $("li").toggleClass("done");
   });
 
   $("ul").on("click", "span", function (e) {
