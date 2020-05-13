@@ -1,25 +1,16 @@
-#Inspire! 
-Inspire! is a to do list application that displays local date and weather as
-well as a random quote from Kanye West. This application will help users stay 
-organize by tracking a list of to do as well as inspire them with a quote.
+# Inspire
+Inspire is a useful todo list which motivates you to do more and be better by being more like Kanye West. Whenever the app is visited one of Mr. West's insightful, wise proverbs is randomly generated. It also uses geolocation to display the current weather for the user and informs the user of the day's holiday if there is one.
 
-# Link to deployed application
-The easiest way to access this application is through this link: 
+## Link to deployed application
+Click here to see the application.
 
 
-# Screen shots of the application 
+## Screen shots of the application 
 
 
 
-# Contributors
+## Contributors
 Benjamin Vasko
 Chue Yang 
 Simeon Ogunyemi
 Sathya Guru
-
-
-# Licensing & copyright
-@Benjamin Vasko
-@Chue Yang 
-@Simeon Ogunyemi
-@Sathya Guru
