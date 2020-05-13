@@ -1,6 +1,5 @@
 $(document).ready(function () {
-<<<<<<< HEAD
-  
+ 
   var imageURLs = [
     "pic/pic1.jpg"
   , "pic/pic2.jpg"
@@ -25,9 +24,7 @@ function getImageTag() {
 $('#photo').append(getImageTag()); 
             
     
-=======
 
->>>>>>> 1d8f46278b5bb4f7757c707906dacb073c226dff
     //geolocation
     var options = {
         enableHighAccuracy: true,
@@ -35,11 +32,11 @@ $('#photo').append(getImageTag());
         maximumAge: 0
     };
 
-    function success(pos) {
-        var crd = pos.coords;
-        console.log(pos);
-        var lat = crd.latitude;
-        var lon = crd.longitude;
+  function success(pos) {
+    var crd = pos.coords;
+    console.log(pos);
+    var lat = crd.latitude;
+    var lon = crd.longitude;
 
         console.log('Your current position is:');
         console.log(`Latitude : ${crd.latitude}`);
@@ -48,93 +45,94 @@ $('#photo').append(getImageTag());
         weatherDisplay(lat, lon);
     }
 
-    function error(err) {
-        console.warn(`ERROR(${err.code}): ${err.message}`);
-    }
 
-    navigator.geolocation.getCurrentPosition(success, error, options);
+  function error(err) {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+  }
 
-
-    // The date is being appended w/ this
-    var d = new Date();
-    var newDate = (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
-    $("#new-date").html(newDate);
+  navigator.geolocation.getCurrentPosition(success, error, options);
 
 
+  // The date is being appended w/ this
+  var d = new Date();
+  var newDate = (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
+  $("#new-date").html(newDate);
 
-    // Kanye Quote API
-    function kanyeQuoteDisplay() {
 
-        var queryURL = "https://api.kanye.rest";
 
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
+  // Kanye Quote API
+  function kanyeQuoteDisplay() {
 
-            .then(function (response) {
-                console.log("Kanye Object");
-                console.log(response);
+    var queryURL = "https://api.kanye.rest";
 
-                // Creates paragraph with quote and appends to div
-                let kanyeQuote = $("<p>").text('"' + response.quote + '"');
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    })
 
-                $("#kanyeQuote").append(kanyeQuote);
+      .then(function (response) {
+        console.log("Kanye Object");
+        console.log(response);
 
-            });
-    };
+        // Creates paragraph with quote and appends to div
+        let kanyeQuote = $("<p>").text('"' + response.quote + '"');
 
-    kanyeQuoteDisplay();
+        $("#kanyeQuote").append(kanyeQuote);
 
-    // Clock using moment.js
-    function updateClock() {
+      });
+  };
 
-        $("#date").text(moment().format("LTS"));
-    }
+  kanyeQuoteDisplay();
 
-    setInterval(updateClock, 1000);
+  // Clock using moment.js
+  function updateClock() {
 
-    // Holiday Calendar API
-    // I used this SO question as a reference: https://stackoverflow.com/questions/8398897/how-to-get-current-date-in-jquery
-    // let d = new Date();
+    $("#date").text(moment().format("LTS"));
+  }
+
+  setInterval(updateClock, 1000);
+
+  // Holiday Calendar API
+  // I used this SO question as a reference: https://stackoverflow.com/questions/8398897/how-to-get-current-date-in-jquery
+  // let d = new Date();
 
     monthToday = d.getMonth() + 1;
     dateToday = d.getDate();
 
-    function USHolidaysDisplay() {
+  function USHolidaysDisplay() {
 
-        let APIKey = "29671703895b844822f5b4b4b459925e35ceadde"
+    let APIKey = "29671703895b844822f5b4b4b459925e35ceadde"
 
-        var queryURL = "https://calendarific.com/api/v2/holidays?&api_key=" + APIKey + "&country=US&year=2020";
+    var queryURL = "https://calendarific.com/api/v2/holidays?&api_key=" + APIKey + "&country=US&year=2020";
 
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
-            .then(function (result) {
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    })
+      .then(function (result) {
 
-                for (let i = 0; i < result.response.holidays.length; i++) {
+        for (let i = 0; i < result.response.holidays.length; i++) {
 
-                    if ((result.response.holidays[i].date.datetime.day === dateToday) && (result.response.holidays[i].date.datetime.month === monthToday)) {
+          if ((result.response.holidays[i].date.datetime.day === dateToday) && (result.response.holidays[i].date.datetime.month === monthToday)) {
 
-                        let holidayName = result.response.holidays[i].name;
+            let holidayName = result.response.holidays[i].name;
 
-                        let holidayToday = $("<p>").text("Today is " + holidayName);
+            let holidayToday = $("<p>").text("Today is " + holidayName);
 
-                        $("#holidayToday").append(holidayToday);
+            $("#holidayToday").append(holidayToday);
 
-                        console.log(holidayName);
-                    }
-                }
+            console.log(holidayName);
+          }
+        }
 
-                console.log("Holiday Object");
-                console.log(result);
+        console.log("Holiday Object");
+        console.log(result);
 
-            });
+      });
 
-    }
+  }
 
-    USHolidaysDisplay();
+  USHolidaysDisplay();
 
 
   // Function for the weather and current city
@@ -146,16 +144,23 @@ $('#photo').append(getImageTag());
       url: queryURL,
       method: "GET",
     })
-    .then(function (response) {
-      // This is logging the name of the city
-      var city = response.name;
-      $("#city").html(city);
-      //This is the temperature
-      var tempC = response.main.temp;
-      var convTemp = tempConvert(tempC);
-      console.log(convTemp);
-      $("#weather").html(convTemp + "°F");
-    });
+      .then(function (response) {
+
+        // this is grabbing the icon for the weather
+        var imgSource = "http://openweathermap.org/img/wn/" + response.weather[0].icon + "@2x.png"
+        // This is logging the name of the city
+        console.log(response);
+        console.log(response.weather[0].icon);        
+        var city = response.name;
+        $("#city").html(city);
+        //This is the temperature
+        var tempC = response.main.temp;
+        var convTemp = tempConvert(tempC);
+        console.log(convTemp);
+        $("#weather").html(convTemp + "°F");
+         //appending the icon image onto the html
+         $("#imgIcon").attr('src', imgSource);
+      });
   }
 
   // This function converts temperature to farenheight
@@ -171,12 +176,12 @@ $('#photo').append(getImageTag());
 
   // To-Do script functions
 
-    $(".fa-caret-down").on("click", function () {
-     
-        $("#input").slideToggle("slow");
-        $("#input").focus();
-        renderTodo();
-      
+  $(".fa-caret-down").on("click", function () {
+
+    $("#input").slideToggle("slow");
+    $("#input").focus();
+    renderTodo();
+
   });
   //creating objects to store in local-storage
   var todoListObj = {
@@ -228,19 +233,19 @@ $('#photo').append(getImageTag());
     e.stopPropagation();
     let taskToRemove = $(this).parent().text().trim();
     let todoLists = JSON.parse(localStorage.getItem("todoList"));
-    
+
     let removeIndex = todoLists
       .map(function (todoObject) {
         return todoObject.todoTask;
       })
       .indexOf(taskToRemove);
-    
+
     todoLists.splice(removeIndex, 1);
     localStorage.setItem("todoList", JSON.stringify(todoLists));
     $(this).parent().remove();
 
   });
-    
+
   $("ul").on("mouseenter", "#trash", function () {
     $(this).css("fontSize", "25px");
   });
@@ -259,5 +264,7 @@ $('#photo').append(getImageTag());
       }
     }
   }
+
     
+
 });
