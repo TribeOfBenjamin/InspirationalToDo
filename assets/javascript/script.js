@@ -1,4 +1,5 @@
 $(document).ready(function () {
+<<<<<<< HEAD
   
   var imageURLs = [
     "pic/pic1.jpg"
@@ -24,6 +25,9 @@ function getImageTag() {
 $('#photo').append(getImageTag()); 
             
     
+=======
+
+>>>>>>> 1d8f46278b5bb4f7757c707906dacb073c226dff
     //geolocation
     var options = {
         enableHighAccuracy: true,
@@ -133,60 +137,6 @@ $('#photo').append(getImageTag());
     USHolidaysDisplay();
 
 
-  kanyeQuoteDisplay();
-
-  // Clock using moment.js
-  function updateClock() {
-    $("#date").text(moment().format("LTS"));
-  }
-
-  setInterval(updateClock, 1000);
-
-  // Holiday Calendar API
-  // I used this SO question as a reference: https://stackoverflow.com/questions/8398897/how-to-get-current-date-in-jquery
-  // let d = new Date();
-
-  let monthToday = d.getMonth() + 1;
-  let dateToday = d.getDate();
-
-  function USHolidaysDisplay() {
-    let APIKey = "29671703895b844822f5b4b4b459925e35ceadde";
-
-    function USHolidaysDisplay() {
-
-        let APIKey = "29671703895b844822f5b4b4b459925e35ceadde"
-
-        var queryURL = "https://calendarific.com/api/v2/holidays?&api_key=" + APIKey + "&country=US&year=2020";
-
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
-            .then(function (result) {
-
-                for (let i = 0; i < result.response.holidays.length; i++) {
-
-                    if ((result.response.holidays[i].date.datetime.day === dateToday) && (result.response.holidays[i].date.datetime.month === monthToday)) {
-
-                        let holidayName = result.response.holidays[i].name;
-
-                        let holidayToday = $("<p>").text("Today is " + holidayName);
-
-                        $("#holidayToday").append(holidayToday);
-
-                        console.log(holidayName);
-                    }
-                }
-
-                console.log("Holiday Object");
-                console.log(result);
-
-            });
-
-    }
-
-  USHolidaysDisplay();
-
   // Function for the weather and current city
   $("#searchBtn").on("click", weatherDisplay);
   function weatherDisplay(lat, lon) {
@@ -219,6 +169,8 @@ $('#photo').append(getImageTag());
     return faren;
   }
 
+  // To-Do script functions
+
     $(".fa-caret-down").on("click", function () {
      
         $("#input").slideToggle("slow");
@@ -226,7 +178,7 @@ $('#photo').append(getImageTag());
         renderTodo();
       
   });
-
+  //creating objects to store in local-storage
   var todoListObj = {
     todoTask: "",
     isDone: false,
@@ -236,7 +188,7 @@ $('#photo').append(getImageTag());
     if (event.keyCode === 13) {
       event.preventDefault();
 
-      var todoLists = JSON.parse(localStorage.getItem("todoList"));
+      let todoLists = JSON.parse(localStorage.getItem("todoList"));
       var todo = $("#input").val();
       if (todo !== "") {
         if (todoLists === null) {
@@ -253,12 +205,40 @@ $('#photo').append(getImageTag());
   });
 
   $("ul").on("click", "li", function () {
-    $(this).toggleClass("done");
+    // $(this).toggleClass("done");
+    let currentTask = $(this).parent().text().trim();
+    console.log("currentTask: ", currentTask);
+    // let todoLists = JSON.parse(localStorage.getItem("todoList"));
+
+    // let getIndex = todoLists
+    //   .map(function (todoObject) {
+    //     return todoObject.todoTask;
+    //   })
+    //   .indexOf(currentTask);
+
+    // if (todoLists[getIndex].isDone === false) {
+    //   todoLists[getIndex].isDone = true;
+    // } else {
+    //   todoLists[getIndex].isDone = false;
+    // }
+    // localStorage.setItem("todoList", JSON.stringify(todoLists));
   });
 
   $("ul").on("click", "span", function (e) {
     e.stopPropagation();
-    $(this).parent().fadeOut();
+    let taskToRemove = $(this).parent().text().trim();
+    let todoLists = JSON.parse(localStorage.getItem("todoList"));
+    
+    let removeIndex = todoLists
+      .map(function (todoObject) {
+        return todoObject.todoTask;
+      })
+      .indexOf(taskToRemove);
+    
+    todoLists.splice(removeIndex, 1);
+    localStorage.setItem("todoList", JSON.stringify(todoLists));
+    $(this).parent().remove();
+
   });
     
   $("ul").on("mouseenter", "#trash", function () {
@@ -273,7 +253,7 @@ $('#photo').append(getImageTag());
     if (storedTodo !== null) {
       $("#list").empty();
       for (let i = 0; i < storedTodo.length; i++) {
-        var listEl = $('<li><span><i class="fa fa-trash-alt" id="trash" aria-hidden="true"></i></span> ' + storedTodo[i].todoTask + "</li>");
+        var listEl = $('<li><span><i class="fa fa-trash-alt" id="trash" aria-hidden="true"></i></span> ' + storedTodo[i].todoTask + '<input class = "completeItem" type = "checkbox">' + "</li>");
         $("#list").append(listEl);
         $("#input").val("");
       }
