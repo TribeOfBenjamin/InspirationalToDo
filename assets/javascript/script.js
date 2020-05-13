@@ -1,31 +1,6 @@
 $(document).ready(function () {
     
-    
-    //picture
-    const numItemsToGenerate = 1; //how many gallery items you want on the screen
-    const numImagesAvailable = 479; //how many total images are in the collection you are pulling from
-    const imageWidth = 480; //your desired image width in pixels
-    const imageHeight = 480; //desired image height in pixels
-    const collectionID = 827743; //the collection ID from the original url
-    function renderGalleryItem(randomNumber){
-   fetch(`https://source.unsplash.com/collection/${collectionID}/${imageWidth}x${imageHeight}/?sig=${randomNumber}`) 
-  .then((response)=> {    
-
-    //console.log(response);
-    //let galleryItem = document.createElement('div');
-    //galleryItem.classList.add('gallery-item');
-    $("body").append(`<img class="gallery-image" src="${response.url}" alt="gallery image"/>`);
-    //galleryItem.innerHTML = `<img class="gallery-image" src="${response.url}" alt="gallery image"/>`
-    //document.body.appendChild(galleryItem);
-  })
-}
-for(let i=0;i<numItemsToGenerate;i++){
-  let randomImageIndex = Math.floor(Math.random() * numImagesAvailable);
-  renderGalleryItem(randomImageIndex);
-}
-    
-    
-    
+            
     
     //geolocation
     var options = {
@@ -45,10 +20,6 @@ for(let i=0;i<numItemsToGenerate;i++){
         console.log(`Longitude: ${crd.longitude}`);
         console.log(`More or less ${crd.accuracy} meters.`);
         weatherDisplay(lat, lon);
-
-
-
-
     }
 
     function error(err) {
@@ -101,8 +72,8 @@ for(let i=0;i<numItemsToGenerate;i++){
     // I used this SO question as a reference: https://stackoverflow.com/questions/8398897/how-to-get-current-date-in-jquery
     // let d = new Date();
 
-    let monthToday = d.getMonth() + 1;
-    let dateToday = d.getDate();
+    monthToday = d.getMonth() + 1;
+    dateToday = d.getDate();
 
     function USHolidaysDisplay() {
 
@@ -286,6 +257,5 @@ for(let i=0;i<numItemsToGenerate;i++){
       }
     }
   }
-
     
 });
