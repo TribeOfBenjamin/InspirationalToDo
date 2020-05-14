@@ -1,35 +1,29 @@
 $(document).ready(function () {
-
- //random photos for background images
+  //random photos for background images
   var imageURLs = [
-    "assets/images/pic1.jpg"
-  , "assets/images/pic2.jpg"
-  , "assets/images/pic3.jpg"
-  , "assets/images/pic4.jpg"
-  , "assets/images/pic5.jpg"
-  , "assets/images/pic6.jpg"
-  , "assets/images/pic7.jpg"
-  , "assets/images/pic8.jpg"
-  , "assets/images/pic9.jpg"
-  , "assets/images/pic10.jpg"
-  , "assets/images/pic11.jpg"
-  , "assets/images/pic12.jpg"
-
+    "assets/images/pic1.jpg",
+    "assets/images/pic2.jpg",
+    "assets/images/pic3.jpg",
+    "assets/images/pic4.jpg",
+    "assets/images/pic5.jpg",
+    "assets/images/pic6.jpg",
+    "assets/images/pic7.jpg",
+    "assets/images/pic8.jpg",
+    "assets/images/pic9.jpg",
+    "assets/images/pic10.jpg",
+    "assets/images/pic11.jpg",
+    "assets/images/pic12.jpg",
   ];
 
   getImageTag();
 
   function getImageTag() {
-  var randomIndex = Math.floor(Math.random() * imageURLs.length);
-  var randomPic = imageURLs[randomIndex];
-  document.body.style.backgroundImage ="url\(\"" + randomPic + "\"\)";
-  document.body.style.backgroundSize ="cover";
-  document.body.style.backgroundRepeat="no-repeat";
+    var randomIndex = Math.floor(Math.random() * imageURLs.length);
+    var randomPic = imageURLs[randomIndex];
+    document.body.style.backgroundImage = 'url("' + randomPic + '")';
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundRepeat = "no-repeat";
   }
-
-
-            
-    
 
   $("#photo").append(getImageTag());
   // $('body').prepend(getImageTag());
@@ -167,11 +161,9 @@ $(document).ready(function () {
   // To-Do script functions
 
   $(".fa-caret-down").on("click", function () {
-    
     $("#input").slideToggle("slow");
     $("#input").focus();
     renderTodo();
-
   });
 
   //creating objects to store in local-storage
@@ -179,7 +171,7 @@ $(document).ready(function () {
     todoTask: "",
     isDone: false,
   };
-  
+
   $("#input").keypress(function (event) {
     if (event.keyCode === 13) {
       event.preventDefault();
@@ -191,9 +183,16 @@ $(document).ready(function () {
           todoListObj.todoTask = todo;
           localStorage.setItem("todoList", JSON.stringify([todoListObj]));
         } else {
-          todoListObj.todoTask = todo;
-          todoLists.push(todoListObj);
-          localStorage.setItem("todoList", JSON.stringify(todoLists));
+          let currentTaskIndex = todoLists
+            .map(function (todoObject) {
+              return todoObject.todoTask;
+            })
+            .indexOf(todo);
+          if (currentTaskIndex === -1) {
+            todoListObj.todoTask = todo;
+            todoLists.push(todoListObj);
+            localStorage.setItem("todoList", JSON.stringify(todoLists));
+          }
         }
       }
       renderTodo();
@@ -258,7 +257,7 @@ $(document).ready(function () {
           pTag.text(storedTodo[i].todoTask);
           checkBox.prop("checked", false);
         }
-        listItem.append(pTag, checkBox)
+        listItem.append(pTag, checkBox);
 
         $("#list").append(listItem);
       }
