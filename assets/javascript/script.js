@@ -1,23 +1,35 @@
 $(document).ready(function () {
+
+ //random photos for background images
   var imageURLs = [
-    "assets/images/pic1.jpg",
-    "assets/images/pic2.jpg",
-    "assets/images/pic3.jpg",
-    "assets/images/pic4.jpg",
-    "assets/images/pic5.jpg",
-    "assets/images/pic6.jpg",
-    "assets/images/pic7.jpg",
-    "assets/images/pic8.jpg",
+    "assets/images/pic1.jpg"
+  , "assets/images/pic2.jpg"
+  , "assets/images/pic3.jpg"
+  , "assets/images/pic4.jpg"
+  , "assets/images/pic5.jpg"
+  , "assets/images/pic6.jpg"
+  , "assets/images/pic7.jpg"
+  , "assets/images/pic8.jpg"
+  , "assets/images/pic9.jpg"
+  , "assets/images/pic10.jpg"
+  , "assets/images/pic11.jpg"
+  , "assets/images/pic12.jpg"
+
   ];
+
+  getImageTag();
+
   function getImageTag() {
-    var randomIndex = Math.floor(Math.random() * imageURLs.length);
-    var randomPic = imageURLs[randomIndex];
-    var img = $("<img>");
-    img.attr("src", randomPic);
-    img.attr("alt", "picture");
-    console.log(img);
-    return img;
+  var randomIndex = Math.floor(Math.random() * imageURLs.length);
+  var randomPic = imageURLs[randomIndex];
+  document.body.style.backgroundImage ="url\(\"" + randomPic + "\"\)";
+  document.body.style.backgroundSize ="cover";
+  document.body.style.backgroundRepeat="no-repeat";
   }
+
+
+            
+    
 
   $("#photo").append(getImageTag());
   // $('body').prepend(getImageTag());
