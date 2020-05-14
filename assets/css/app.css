@@ -17,12 +17,10 @@
 #weatherCard {
   grid-column: 11/13;
   grid-row: span 1;
-   
 }
 
 #weather {
   font-size: 30px;
-
 }
 
 .Kanye{
@@ -31,9 +29,7 @@
   overflow-wrap: break-word;
   text-align: center;
   padding: 25px;
-
 }
-
 
 .toDo {
   grid-column: 3/11;
@@ -41,9 +37,8 @@
   margin-left: 5px;
   padding: 10px;
   text-align: center;
-  border-radius: 25px;
+  border-radius: 15px;
 }
-
 
 #input {
   width: 100%;
@@ -54,7 +49,6 @@
   padding-left: 20px ;
   box-sizing: border-box;
   margin-top: 20px;
-  
 }
 
 .row{
@@ -65,12 +59,13 @@
   margin: auto;
   text-align: center;
   line-height: 40px;
-  border-radius: 25px;
+  border-radius: 15px;
 }
 
 .fa-caret-down {
   float:right;
   padding: 8px;
+  padding-right: 30px;
 }
 
 .done {
@@ -92,7 +87,6 @@ span .fa-trash-alt {
 }
 
 li:hover span .fa-trash-alt {
-  
   width: 20px;
   opacity: 1;
 }
@@ -113,7 +107,7 @@ li {
 h3 {
   background-color:teal;
   color: white;
-  border-radius: 25px;
+  border-radius: 15px;
   /* padding: 10px; */
   margin: 0;
   height: 50px;
@@ -163,8 +157,7 @@ h3 {
   }
 
   #weatherCard {
-    grid-column: 7/12;
-     
+    grid-column: 7/12;  
     /* right: 0;
     top: 90px; */
     /* margin-top: 5px;
@@ -191,7 +184,6 @@ h3 {
     grid-gap: 0.5rem;
   }
 
-
   #dateAndTime {
     grid-column: span 4;
     /* grid-column: span 12;
@@ -204,7 +196,6 @@ h3 {
     font-weight: bold;
     font-size: 30px; */
   }
-  
 
   .toDo {
     grid-column: span 8;
