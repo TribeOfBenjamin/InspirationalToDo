@@ -37,29 +37,30 @@
   margin-left: 5px;
   padding: 10px;
   text-align: center;
-  border-radius: 15px;
+  border-radius: 10px;
 }
 
 #input {
   width: 100%;
   display: none;
   outline: none;
-  height: 50px;
-  font-size: 14px;
+  height: 40px;
+  font-size: 16px;
   padding-left: 20px ;
   box-sizing: border-box;
   margin-top: 20px;
 }
 
 .row{
-  width: 300px;
+  width: 400px;
   height: auto;
   background-color: white;
-  border: 1px solid #999;
+  /* border: 1px solid #999; */
   margin: auto;
   text-align: center;
   line-height: 40px;
-  border-radius: 15px;
+  border-radius: 10px;
+  border-style: none!important;
 }
 
 .fa-caret-down {
@@ -100,18 +101,18 @@ li {
 
 .completeItem{
   float:right;
-  margin-right:40px;
+  margin-right:15px;
   margin-top:10px;
 }
 
 h3 {
   background-color:teal;
   color: white;
-  border-radius: 15px;
-  /* padding: 10px; */
+  border-radius: 10px;
+  font-family:roboto;
+  padding-top: 5px;
   margin: 0;
   height: 50px;
-  /* align-content: center; */
 }
 
 #holidayContainer {
@@ -119,7 +120,7 @@ h3 {
   grid-row: span 1;
   text-align: center;
   margin-top: 60px;
-  color: blac;
+  color: black;
   font-size: 60px;
 }
 
