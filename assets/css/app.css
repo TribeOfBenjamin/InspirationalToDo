@@ -29,6 +29,7 @@
   overflow-wrap: break-word;
   text-align: center;
   padding: 25px;
+  font-weight: bolder;
 }
 
 .toDo {
@@ -37,29 +38,30 @@
   margin-left: 5px;
   padding: 10px;
   text-align: center;
-  border-radius: 15px;
+  border-radius: 10px;
 }
 
 #input {
   width: 100%;
   display: none;
   outline: none;
-  height: 50px;
-  font-size: 14px;
+  height: 40px;
+  font-size: 16px;
   padding-left: 20px ;
   box-sizing: border-box;
   margin-top: 20px;
 }
 
 .row{
-  width: 300px;
+  width: 400px;
   height: auto;
   background-color: white;
-  border: 1px solid #999;
+  /* border: 1px solid #999; */
   margin: auto;
   text-align: center;
   line-height: 40px;
-  border-radius: 15px;
+  border-radius: 10px;
+  border-style: none!important;
 }
 
 .fa-caret-down {
@@ -100,18 +102,18 @@ li {
 
 .completeItem{
   float:right;
-  margin-right:40px;
+  margin-right:15px;
   margin-top:10px;
 }
 
 h3 {
   background-color:teal;
   color: white;
-  border-radius: 15px;
-  /* padding: 10px; */
+  border-radius: 10px;
+  font-family:roboto;
+  padding-top: 5px;
   margin: 0;
   height: 50px;
-  /* align-content: center; */
 }
 
 #holidayContainer {
@@ -120,18 +122,12 @@ h3 {
   text-align: center;
   margin-top: 60px;
   color: black;
-  background-color: rgba(255, 255, 255, 0.253);
-  margin: auto;
-  padding: 20px;
-  
-
+  font-weight: bolder;
 }
-
-
 
 #holidayTitle {
   font-weight: bold;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 #newCard {
@@ -184,9 +180,6 @@ h3 {
     grid-row: 6 ;
     text-align: center;
     color: black;
-    background-color: rgba(255, 255, 255, 0.253);
-
-
   }
 
   #newCard {
