@@ -94,7 +94,7 @@ $(document).ready(function () {
   dateToday = d.getDate();
 
   function USHolidaysDisplay() {
-    let APIKey = "29671703895b844822f5b4b4b459925e35ceadde";
+    let APIKey = "b42379eecddacca015fc2547f28e738566e0f97a";
 
     var queryURL = "https://calendarific.com/api/v2/holidays?&api_key=" + APIKey + "&country=US&year=2020";
 
