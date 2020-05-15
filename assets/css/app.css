@@ -20,15 +20,17 @@
   overflow-wrap: break-word;
   text-align: center;
   padding: 25px;
+  font-weight: bolder;
 }
 
 .toDo {
   grid-column: 3/11;
   grid-row: span 3;
   margin-left: 5px;
+  margin-right: 5px;
   padding: 10px;
   text-align: center;
-  border-radius: 15px;
+  border-radius: 10px;
 }
 
 #input {
@@ -49,7 +51,8 @@
   margin: auto;
   text-align: center;
   line-height: 40px;
-  border-radius: 15px;
+  border-radius: 10px;
+  border-style: none!important;
 }
 
 .fa-caret-down {
@@ -92,7 +95,7 @@ li {
 
 .completeItem{
   float:right;
-  margin-right:20px;
+  margin-right:15px;
   margin-top:10px;
 }
 
@@ -119,7 +122,7 @@ h3 {
 
 #holidayTitle {
   font-weight: bold;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 #newCard {
@@ -127,12 +130,12 @@ h3 {
   grid-row: span 2; 
   background-color: rgba(255, 255, 255, 0.253);
   opacity: 0.8;
-  /* position: absolute;
+  position: absolute;
   top: 0;
-  right: 0; */
+  right: 0;
   padding-bottom: 10px;
   text-align: center;
-  /* margin-right: 20px; */
+  margin-right: 20px;
 }
 
 #newCard:hover {
@@ -165,13 +168,12 @@ h3 {
     grid-row: 6 ;
     text-align: center;
     color: black;
-    background-color: rgba(255, 255, 255, 0.253);
-
-
   }
 
   #newCard {
     grid-column: 6/7;
+    position: initial;
+    width: 150px;
   }
 }
 
@@ -198,5 +200,8 @@ h3 {
 
     #newCard {
     grid-column: 5/7;
+    grid-column: 6/7;
+    position: initial;
+    width: 150px;
   }
 }

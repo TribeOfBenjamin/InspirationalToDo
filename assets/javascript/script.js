@@ -22,6 +22,7 @@ $(document).ready(function () {
     document.body.style.backgroundImage = 'url("' + randomPic + '")';
     document.body.style.backgroundSize = "cover";
     document.body.style.backgroundRepeat = "no-repeat";
+    document.body.style.backgroundAttachment = "fixed";
   }
 
   $("#photo").append(getImageTag());
@@ -107,7 +108,7 @@ $(document).ready(function () {
 
           let holidayToday = $("<p>").text("Today is " + holidayName);
 
-          $("#holidayToday").append(holidayToday);
+          $("#holidayToday").html(holidayToday);
 
           console.log(holidayName);
         }
