@@ -35,8 +35,8 @@
   width: 100%;
   display: none;
   outline: none;
-  height: 50px;
-  font-size: 14px;
+  height: 40px;
+  font-size: 16px;
   padding-left: 20px ;
   box-sizing: border-box;
   margin-top: 20px;
@@ -82,6 +82,7 @@ li:hover span .fa-trash-alt {
 }
 
 li {
+  width:400px !important;
   list-style-type: none;
   background-color: white;
   color: #555;
@@ -91,7 +92,7 @@ li {
 
 .completeItem{
   float:right;
-  margin-right:40px;
+  margin-right:20px;
   margin-top:10px;
 }
 
@@ -152,17 +153,12 @@ h3 {
     visibility: hidden;
   }
   
-  /* .toDo {
+  .toDo {
     grid-column: span 12;
     grid-row: 4;
     padding: 20px;
     text-align: center;
-  } */
-
-  .pTag{
-    font-size: 16px;
   }
-
   
   #holidayContainer {
     grid-column: span 12;
