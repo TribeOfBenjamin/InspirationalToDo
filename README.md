@@ -21,11 +21,17 @@ Click here to see the application.
 
 
 ## Screen shots of the application 
+![Screen Shot 2020-05-14 at 9 44 51 PM](https://user-images.githubusercontent.com/17972802/82005890-35966e80-962c-11ea-81d9-5840136cbb1d.png)
 
+
+![Screen Shot 2020-05-14 at 9 41 48 PM](https://user-images.githubusercontent.com/17972802/82005915-45ae4e00-962c-11ea-94a8-e7fbe851352c.png)
 
 
 ## Contributors
 Benjamin Vasko
+
 Chue Yang 
+
 Simeon Ogunyemi
+
 Sathya Guru

@@ -14,15 +14,6 @@
   font-size: 30px;
 }
 
-#weatherCard {
-  grid-column: 11/13;
-  grid-row: span 1;
-}
-
-#weather {
-  font-size: 30px;
-}
-
 .Kanye{
   grid-column: span 12;
   grid-row: auto;
@@ -37,29 +28,28 @@
   margin-left: 5px;
   padding: 10px;
   text-align: center;
-  border-radius: 10px;
+  border-radius: 15px;
 }
 
 #input {
   width: 100%;
   display: none;
   outline: none;
-  height: 40px;
-  font-size: 16px;
+  height: 50px;
+  font-size: 14px;
   padding-left: 20px ;
   box-sizing: border-box;
   margin-top: 20px;
 }
 
 .row{
-  width: 400px;
+  width: 300px;
   height: auto;
   background-color: white;
   margin: auto;
   text-align: center;
   line-height: 40px;
-  border-radius: 10px;
-  border-style: none!important;
+  border-radius: 15px;
 }
 
 .fa-caret-down {
@@ -101,7 +91,7 @@ li {
 
 .completeItem{
   float:right;
-  margin-right:15px;
+  margin-right:40px;
   margin-top:10px;
 }
 
@@ -120,12 +110,34 @@ h3 {
   text-align: center;
   margin-top: 60px;
   color: black;
-  font-size: 60px;
+  background-color: rgba(255, 255, 255, 0.253);
+  margin: auto;
+  padding: 20px;
 }
+
 
 #holidayTitle {
   font-weight: bold;
   font-size: 25px;
+}
+
+#newCard {
+  grid-column: 11/13;
+  grid-row: span 2; 
+  background-color: rgba(255, 255, 255, 0.253);
+  opacity: 0.8;
+  /* position: absolute;
+  top: 0;
+  right: 0; */
+  padding-bottom: 10px;
+  text-align: center;
+  /* margin-right: 20px; */
+}
+
+#newCard:hover {
+  transition: 1s;
+  background-color: rgba(255, 255, 255, 0.253);
+  opacity: 1.0;
 }
 
 @media (max-width: 768px){
@@ -137,17 +149,12 @@ h3 {
   }
 
   #dateAndTime {
-    grid-column: 1/6;
-    grid-row: span 1;
-    margin-top: 5px;
-    margin-left: 20px;
-    font-weight: bold;
-    font-size: 30px;
+    visibility: hidden;
   }
   
   /* .toDo {
     grid-column: span 12;
-    grid-row: 3/4;
+    grid-row: 4;
     padding: 20px;
     text-align: center;
   } */
@@ -156,22 +163,20 @@ h3 {
     font-size: 16px;
   }
 
-  #weatherCard {
-    grid-column: 7/12;  
-    /* right: 0;
-    top: 90px; */
-    /* margin-top: 5px;
-    margin-right: 20px; */
-    /* background: rgba (0, 128 , 128, .70); */
-  }
-
+  
   #holidayContainer {
     grid-column: span 12;
-    grid-row:6 ;
+    grid-row: 6 ;
     text-align: center;
-    color: white;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.253);
+
+
   }
 
+  #newCard {
+    grid-column: 6/7;
+  }
 }
 
 @media (max-width: 400px){
@@ -184,42 +189,18 @@ h3 {
   }
 
   #dateAndTime {
-    grid-column: span 4;
-    /* grid-column: span 12;
-    grid-row: span 1;
-  
-    left: 0;
-    top: 90px;
-    margin-top: 5px;
-    margin-left: 20px;
-    font-weight: bold;
-    font-size: 30px; */
+    visibility: hidden;
   }
 
   .toDo {
     grid-column: span 8;
-    grid-row: span 4;
+    grid-row: 4;
     padding: 10px;
   
     text-align: center; 
   }
-}
 
-#newCard {
-  margin-top: 90px;
-  background-color: rgba(255, 255, 255, 0.253);
-  opacity: 0.8;
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding-bottom: 10px;
-  text-align: center;
-  margin-right: 20px;
+    #newCard {
+    grid-column: 5/7;
+  }
 }
-
-#newCard:hover {
-  transition: 1s;
-  background-color: rgba(255, 255, 255, 0.253);
-  opacity: 1.0;
-}
-
