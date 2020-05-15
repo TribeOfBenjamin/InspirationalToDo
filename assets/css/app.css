@@ -176,6 +176,8 @@ h3 {
 
   #newCard {
     grid-column: 6/7;
+    position: initial;
+    width: 150px;
   }
 }
 
@@ -202,5 +204,8 @@ h3 {
 
     #newCard {
     grid-column: 5/7;
+    grid-column: 6/7;
+    position: initial;
+    width: 150px;
   }
 }
