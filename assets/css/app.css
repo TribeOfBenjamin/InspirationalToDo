@@ -55,7 +55,6 @@
   width: 400px;
   height: auto;
   background-color: white;
-  /* border: 1px solid #999; */
   margin: auto;
   text-align: center;
   line-height: 40px;
@@ -97,6 +96,7 @@ li {
   background-color: white;
   color: #555;
   text-align: left;
+  overflow-wrap: break-word;
 }
 
 .completeItem{
@@ -109,7 +109,6 @@ h3 {
   background-color:teal;
   color: white;
   border-radius: 10px;
-  font-family:roboto;
   padding-top: 5px;
   margin: 0;
   height: 50px;
@@ -146,12 +145,12 @@ h3 {
     font-size: 30px;
   }
   
-  .toDo {
+  /* .toDo {
     grid-column: span 12;
     grid-row: 3/4;
     padding: 20px;
     text-align: center;
-  }
+  } */
 
   .pTag{
     font-size: 16px;

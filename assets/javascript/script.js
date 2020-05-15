@@ -251,7 +251,7 @@ $(document).ready(function () {
       for (let i = 0; i < storedTodo.length; i++) {
         let listItem = $('<li><span><i class="fa fa-trash-alt" id="trash" aria-hidden="true"></i></span>');
         let pTag = $('<p class="ptag">').css("display", "inline-block");
-        let checkBox = $("<input class='completeItem' type='checkbox' >").css("display", "inline-block");
+        let checkBox = $("<input class='completeItem' type='checkbox'>").css("display", "inline-block");
         if (storedTodo[i].isDone === true) {
           pTag.addClass("done");
           pTag.text(storedTodo[i].todoTask);
