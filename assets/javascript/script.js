@@ -107,7 +107,7 @@ $(document).ready(function () {
 
           let holidayToday = $("<p>").text("Today is " + holidayName);
 
-          $("#holidayToday").append(holidayToday);
+          $("#holidayToday").html(holidayToday);
 
           console.log(holidayName);
         }
