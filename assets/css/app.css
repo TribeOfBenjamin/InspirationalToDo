@@ -46,7 +46,6 @@
   width: 300px;
   height: auto;
   background-color: white;
-  border: 1px solid #999;
   margin: auto;
   text-align: center;
   line-height: 40px;
@@ -87,6 +86,7 @@ li {
   background-color: white;
   color: #555;
   text-align: left;
+  overflow-wrap: break-word;
 }
 
 .completeItem{
@@ -98,7 +98,8 @@ li {
 h3 {
   background-color:teal;
   color: white;
-  border-radius: 15px;
+  border-radius: 10px;
+  padding-top: 5px;
   margin: 0;
   height: 50px;
 }
@@ -151,12 +152,12 @@ h3 {
     visibility: hidden;
   }
   
-  .toDo {
+  /* .toDo {
     grid-column: span 12;
     grid-row: 4;
     padding: 20px;
     text-align: center;
-  }
+  } */
 
   .pTag{
     font-size: 16px;
