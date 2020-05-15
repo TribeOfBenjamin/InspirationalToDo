@@ -172,6 +172,7 @@ $(document).ready(function () {
     isDone: false,
   };
 
+  // Add a new task to the To-Do list when input is given 
   $("#input").keypress(function (event) {
     if (event.keyCode === 13) {
       event.preventDefault();
@@ -199,6 +200,7 @@ $(document).ready(function () {
     }
   });
 
+  //Mark a task as complete by clicking the checkbox..
   $("ul").delegate('input[type="checkbox"]', "change", function () {
     let currentTask = $(this).parent().text().trim();
     let todoLists = JSON.parse(localStorage.getItem("todoList"));
@@ -218,6 +220,7 @@ $(document).ready(function () {
     renderTodo();
   });
 
+  // Delete a task when the trash icon is clicked..
   $("ul").on("click", "span", function (e) {
     e.stopPropagation();
     let taskToRemove = $(this).parent().text().trim();
