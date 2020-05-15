@@ -8,7 +8,6 @@ $(document).ready(function () {
     "assets/images/pic5.jpg",
     "assets/images/pic6.jpg",
     "assets/images/pic7.jpg",
-    "assets/images/pic8.jpg",
     "assets/images/pic9.jpg",
     "assets/images/pic10.jpg",
     "assets/images/pic11.jpg",
@@ -251,7 +250,7 @@ $(document).ready(function () {
       for (let i = 0; i < storedTodo.length; i++) {
         let listItem = $('<li><span><i class="fa fa-trash-alt" id="trash" aria-hidden="true"></i></span>');
         let pTag = $('<p class="ptag">').css("display", "inline-block");
-        let checkBox = $("<input class='completeItem' type='checkbox' >").css("display", "inline-block");
+        let checkBox = $("<input class='completeItem' type='checkbox'>").css("display", "inline-block");
         if (storedTodo[i].isDone === true) {
           pTag.addClass("done");
           pTag.text(storedTodo[i].todoTask);

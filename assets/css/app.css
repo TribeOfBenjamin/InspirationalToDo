@@ -14,15 +14,6 @@
   font-size: 30px;
 }
 
-#weatherCard {
-  grid-column: 11/13;
-  grid-row: span 1;
-}
-
-#weather {
-  font-size: 30px;
-}
-
 .Kanye{
   grid-column: span 12;
   grid-row: auto;
@@ -56,7 +47,10 @@
   width: 400px;
   height: auto;
   background-color: white;
+<<<<<<< HEAD
   /* border: 1px solid #999; */
+=======
+>>>>>>> c6d7ebfbd24e9776d841025bd075496e0006eddf
   margin: auto;
   text-align: center;
   line-height: 40px;
@@ -98,6 +92,7 @@ li {
   background-color: white;
   color: #555;
   text-align: left;
+  overflow-wrap: break-word;
 }
 
 .completeItem{
@@ -110,7 +105,10 @@ h3 {
   background-color:teal;
   color: white;
   border-radius: 10px;
+<<<<<<< HEAD
   font-family:roboto;
+=======
+>>>>>>> c6d7ebfbd24e9776d841025bd075496e0006eddf
   padding-top: 5px;
   margin: 0;
   height: 50px;
@@ -122,24 +120,34 @@ h3 {
   text-align: center;
   margin-top: 60px;
   color: black;
+<<<<<<< HEAD
   font-weight: bolder;
 }
 
+=======
+  background-color: rgba(255, 255, 255, 0.253);
+  margin: auto;
+  padding: 20px;
+}
+
+
+>>>>>>> c6d7ebfbd24e9776d841025bd075496e0006eddf
 #holidayTitle {
   font-weight: bold;
   font-size: 20px;
 }
 
 #newCard {
-  margin-top: 90px;
+  grid-column: 11/13;
+  grid-row: span 2; 
   background-color: rgba(255, 255, 255, 0.253);
   opacity: 0.8;
-  position: absolute;
+  /* position: absolute;
   top: 0;
-  right: 0;
+  right: 0; */
   padding-bottom: 10px;
   text-align: center;
-  margin-right: 20px;
+  /* margin-right: 20px; */
 }
 
 #newCard:hover {
@@ -160,21 +168,18 @@ h3 {
     visibility: hidden;
   }
   
-  .toDo {
+  /* .toDo {
     grid-column: span 12;
     grid-row: 4;
     padding: 20px;
     text-align: center;
-  }
+  } */
 
   .pTag{
     font-size: 16px;
   }
 
-  #weatherCard {
-    grid-column: 7/12;  
-  }
-
+  
   #holidayContainer {
     grid-column: span 12;
     grid-row: 6 ;
@@ -183,7 +188,7 @@ h3 {
   }
 
   #newCard {
-    grid-column: 5/7;
+    grid-column: 6/7;
   }
 }
 
