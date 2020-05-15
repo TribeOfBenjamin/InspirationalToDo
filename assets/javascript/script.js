@@ -8,7 +8,6 @@ $(document).ready(function () {
     "assets/images/pic5.jpg",
     "assets/images/pic6.jpg",
     "assets/images/pic7.jpg",
-    "assets/images/pic8.jpg",
     "assets/images/pic9.jpg",
     "assets/images/pic10.jpg",
     "assets/images/pic11.jpg",
