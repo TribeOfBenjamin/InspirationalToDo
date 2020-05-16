@@ -124,14 +124,14 @@ $(document).ready(function () {
   // Function for the weather and current city
   $("#searchBtn").on("click", weatherDisplay);
   function weatherDisplay(lat, lon) {
-    queryURL = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=84195ee828661450717285da2a13ecae";
+    queryURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=84195ee828661450717285da2a13ecae";
 
     $.ajax({
       url: queryURL,
       method: "GET",
     }).then(function (response) {
       // this is grabbing the icon for the weather
-      var imgSource = "http://openweathermap.org/img/wn/" + response.weather[0].icon + "@2x.png";
+      var imgSource = "https://openweathermap.org/img/wn/" + response.weather[0].icon + "@2x.png";
       // This is logging the name of the city
       console.log(response);
       console.log(response.weather[0].icon);
