@@ -1,6 +1,8 @@
 # Inspire
 Inspire is a useful todo list which motivates you to do more and be better by being more like Kanye West. Whenever the app is visited one of Mr. West's insightful, wise proverbs is randomly generated. It also uses geolocation to display the current weather for the user and informs the user of the day's holiday if there is one.
 
+You can run this Application [here](https://tribeofbenjamin.github.io/InspirationalToDo/).
+
 ## Features
 * Displays Current Weather
 * Inspirational Quotes
@@ -15,10 +17,6 @@ Inspire is a useful todo list which motivates you to do more and be better by be
 
 ## CSS Framework Used
 * [Foundation](https://get.foundation/)
-
-## Link to deployed application
-Click here to see the application.
-
 
 ## Screen shots of the application 
 ![Screen Shot 2020-05-14 at 9 44 51 PM](https://user-images.githubusercontent.com/17972802/82005890-35966e80-962c-11ea-81d9-5840136cbb1d.png)
