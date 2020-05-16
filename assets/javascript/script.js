@@ -26,7 +26,7 @@ $(document).ready(function () {
   }
 
   $("#photo").append(getImageTag());
-  // $('body').prepend(getImageTag());
+  
 
   //geolocation
   var options = {
@@ -88,7 +88,7 @@ $(document).ready(function () {
 
   // Holiday Calendar API
   // I used this SO question as a reference: https://stackoverflow.com/questions/8398897/how-to-get-current-date-in-jquery
-  // let d = new Date();
+  
 
   monthToday = d.getMonth() + 1;
   dateToday = d.getDate();
