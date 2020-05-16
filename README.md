@@ -9,6 +9,7 @@ You can run this Application [here](https://tribeofbenjamin.github.io/Inspiratio
 * Current Date and Time
 * Todo List
 * Today's Holiday 
+* Random pictures 
 
 ## APIs Used
 * [OpenWeather](https://openweathermap.org/api)
